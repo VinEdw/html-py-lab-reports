@@ -1,7 +1,7 @@
 import re
 
 class PresisonNumber:
-    def __init__(self, value_str: str, *, sigFigs: int, decimalPlace: int, absoluteError: float, relativeError: float):
+    def __init__(self, value_str: str, *, sig_figs: int, decimal_place: int, absolute_error: float, relative_error: float):
         self.value_str = value_str
         self.value = float(value_str)
     
