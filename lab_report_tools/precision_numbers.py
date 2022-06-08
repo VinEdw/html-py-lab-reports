@@ -11,4 +11,11 @@ class PresisonNumber:
 
 
 if __name__ == "__main__":
-    pass
+    import unittest
+
+    class TestSigFigCounter(unittest.TestCase):
+        
+        def no_decmial_point(self):
+            pass
+
+    unittest.main()
