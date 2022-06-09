@@ -1,3 +1,4 @@
+import math
 import re
 
 class PrecisionNumber:
@@ -10,6 +11,7 @@ class PrecisionNumber:
         if value_type not in [str, float, int]:
             raise TypeError("PrecisionNumber *value_str* argument must be of type str|float|int")
         self._value = float(value_str)
+        self._leading_place_value = math.floor(math.log(self._value, 10))
 
         if sig_figs == None and decimal_place == None:
             self.sig_figs = self.count_sig_figs(str(value_str))
@@ -48,8 +50,10 @@ class PrecisionNumber:
         """Get the number of sig figs."""
         return self._sig_figs
     @property.setter
-    def sig_figs(self, value):
+    def sig_figs(self, value: int):
         """Set the number of sig figs to the input value, and update the decimal place accordingly."""
+        self._sig_figs = value
+        self._decimal_place = 1 + self._leading_place_value - value
     
     @property
     def decimal_place(self):
