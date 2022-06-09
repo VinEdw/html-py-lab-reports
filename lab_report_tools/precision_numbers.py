@@ -94,6 +94,25 @@ class PrecisionNumber:
     def count_sig_figs(value_str: str) -> int:
         """Count the number of significant figures (sig figs) in the input number string."""
         value = float(value_str)
+        value_str = value_str.strip().upper()
+        value_str = value_str.replace("_", "")
+        value_str = value_str.replace("+", "")
+        value_str = value_str.replace("-", "")
+        if "E" in value_str:
+            num_part = value_str.split("E")[0]
+            return PrecisionNumber.count_sig_figs(num_part)
+        if "." in value_str:
+            sf_count = 0
+            pre_decimal_point, post_decimal_point = value_str.split(".")
+            pre_decimal_point = pre_decimal_point.lstrip("0")
+            sf_count += len(pre_decimal_point)
+            if len(pre_decimal_point) == 0:
+                sf_count += len(post_decimal_point.lstrip("0"))
+            else:
+                sf_count += len(post_decimal_point)
+            return sf_count
+        else:
+            return len(value_str.strip("0"))
 
     # @staticmethod
     # def get_decimal_place(value_str: str) -> int:
