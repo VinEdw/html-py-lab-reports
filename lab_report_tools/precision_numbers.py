@@ -57,7 +57,7 @@ class PrecisionNumber:
         self._decimal_place = 1 + self._leading_place_value - value
     
     @property
-    def decimal_place(self):
+    def decimal_place(self) -> int:
         """Get the place value of the lowest decimal place."""
         return self._decimal_place
     @property.setter
@@ -68,7 +68,7 @@ class PrecisionNumber:
         self._sig_figs = 1 + self._leading_place_value - value
     
     @property
-    def absolute_error(self):
+    def absolute_error(self) -> float:
         """Get the absolute error of the number."""
         return self._absolute_error
     @property.setter
@@ -79,11 +79,11 @@ class PrecisionNumber:
         self._relative_error = value / self._value
     
     @property
-    def relative_error(self):
+    def relative_error(self) -> float:
         """Get the relative error of the number."""
         return self._relative_error
     @property.setter
-    def relative_error(self, value):
+    def relative_error(self, value: float|int):
         """Set the relative error to the input value, and update the absolute error accordingly."""
 
     
