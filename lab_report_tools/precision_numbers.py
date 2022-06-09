@@ -149,5 +149,19 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("205"), 3)
             self.assertEqual(PrecisionNumber.count_sig_figs("36700"), 3)
             self.assertEqual(PrecisionNumber.count_sig_figs("21"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("9"), 1)
+            self.assertEqual(PrecisionNumber.count_sig_figs("1000"), 1)
+
+        def test_with_decimal_point(self):
+            """Test numbers that do contain a decimal point."""
+            self.assertEqual(PrecisionNumber.count_sig_figs("2.05"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("61.09"), 4)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0.500"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("3.000"), 4)
+            self.assertEqual(PrecisionNumber.count_sig_figs("80.0000"), 6)
+            self.assertEqual(PrecisionNumber.count_sig_figs("70."), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0.0025"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs(".000108"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0.00040600"), 5)
 
     unittest.main()
