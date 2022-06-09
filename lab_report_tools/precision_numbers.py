@@ -28,11 +28,11 @@ class PrecisionNumber:
             self.absolute_error = self.get_absolute_error(value)
         elif absolute_error != None and relative_error == None:
             if type(absolute_error) is not float:
-                raise TypeError("*absolute_error* argument should be an float")
+                raise TypeError("*absolute_error* argument should be a float")
             self.absolute_error = absolute_error
         elif absolute_error == None and relative_error != None:
             if type(relative_error) is not float:
-                raise TypeError("*relative_error* argument should be an float")
+                raise TypeError("*relative_error* argument should be a float")
             self.relative_error = relative_error
         else:
             raise ValueError("*absolute_error* and *relative_error* cannot both be defined")
