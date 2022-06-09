@@ -64,7 +64,7 @@ class PrecisionNumber:
     # @staticmethod
     # def get_decimal_place(value_str: str) -> int:
     #     """Get the place valueof the lowest decimal place in the input number string.
-    #     The returned valueis the power 10 would need to be raised to in order to be in the proper place value."""
+    #     The returned value is the power 10 would need to be raised to in order to be in the proper place value."""
     #     value = float(value_str)
     
     @staticmethod
