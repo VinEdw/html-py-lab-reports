@@ -163,5 +163,16 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("0.0025"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs(".000108"), 3)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.00040600"), 5)
+        
+        def test_with_scientific_notation(self):
+            """Test numbers that are written in scientific notation (or at least contain an E)."""
+            self.assertEqual(PrecisionNumber.count_sig_figs("1.25E+09"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("2.846E-20"), 4)
+            self.assertEqual(PrecisionNumber.count_sig_figs("1.002E8"), 4)
+            self.assertEqual(PrecisionNumber.count_sig_figs("8.4e2"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("71.8E-3"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("1257E0"), 4)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0.093e+14"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0.2E2"), 1)
 
     unittest.main()
