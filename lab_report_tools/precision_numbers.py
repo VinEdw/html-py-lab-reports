@@ -141,10 +141,13 @@ if __name__ == "__main__":
     import unittest
 
     class TestSigFigCounter(unittest.TestCase):
-        """Test if PrecisionNumber.count_sig_figs() works properly."""
+        """Test if PrecisionNumber.count_sig_figs() works properly and return the correct number of significant figures."""
         
         def test_no_decmial_point(self):
             """Test numbers that do not contain a decimal point."""
-            self.assertNotEqual(PrecisionNumber.count_sig_figs("120"), None)
+            self.assertEqual(PrecisionNumber.count_sig_figs("120"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("205"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("36700"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("21"), 2)
 
     unittest.main()
