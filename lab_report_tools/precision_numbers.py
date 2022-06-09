@@ -85,6 +85,9 @@ class PrecisionNumber:
     @property.setter
     def relative_error(self, value: float|int):
         """Set the relative error to the input value, and update the absolute error accordingly."""
+        value = float(value)
+        self._absolute_error = value
+        self._relative_error = value * self._value
 
     
     @staticmethod
