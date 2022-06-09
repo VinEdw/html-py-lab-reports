@@ -35,31 +35,47 @@ class PrecisionNumber:
             
         
     @property
-    def value_str(self):
-        """Get the number's value_str."""
+    def value(self) -> float:
+        """Get the value of the number."""
         return self._value
+
+    @property
+    def sig_figs(self) -> int:
+        """Get the number of sig figs."""
+    
+    @property
+    def decimal_place(self):
+        """Get the place value of the lowest decimal place."""
+    
+    @property
+    def absolute_error():
+        """Get the absolute error of the number."""
+    
+    @property
+    def relative_error():
+        """Get the relative error of the number."""
 
     
     @staticmethod
     def count_sig_figs(value_str: str) -> int:
         """Count the number of significant figures (sig figs) in the input number string."""
-        value_str = float(value_str)
+        value = float(value_str)
 
     # @staticmethod
     # def get_decimal_place(value_str: str) -> int:
-    #     """Get the place value_str of the lowest decimal place in the input number string.
-    #     The returned value_str is the power 10 would need to be raised to in order to be in the proper place value_str."""
-    #     value_str = float(value_str)
+    #     """Get the place valueof the lowest decimal place in the input number string.
+    #     The returned valueis the power 10 would need to be raised to in order to be in the proper place value."""
+    #     value = float(value_str)
     
     @staticmethod
     def get_absolute_error(value_str: str) -> int:
         """Get the absolute error of the input number string."""
-        value_str = float(value_str)
+        value = float(value_str)
 
     # @staticmethod
     # def get_relative_error(value_str: str) -> int:
     #     """Get the relative error of the input number string."""
-    #     value_str = float(value_str)
+    #     value = float(value_str)
 
 if __name__ == "__main__":
     import unittest
