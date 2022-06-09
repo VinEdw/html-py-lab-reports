@@ -1,5 +1,4 @@
 import math
-import re
 
 class PrecisionNumber:
     def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None):
