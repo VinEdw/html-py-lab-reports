@@ -124,16 +124,18 @@ class PrecisionNumber:
         return 1 + leading_place_value - sf_count
     
     @staticmethod
-    def get_absolute_error(value_str: str) -> int:
+    def get_absolute_error(value_str: str) -> float:
         """Get the absolute error of the input number string."""
         value = float(value_str)
         decimal_place = PrecisionNumber.get_decimal_place(value_str)
         return 10**decimal_place
 
-    # @staticmethod
-    # def get_relative_error(value_str: str) -> int:
-    #     """Get the relative error of the input number string."""
-    #     value = float(value_str)
+    @staticmethod
+    def get_relative_error(value_str: str) -> float:
+        """Get the relative error of the input number string."""
+        value = float(value_str)
+        absolute_error = PrecisionNumber.get_absolute_error(value_str)
+        return absolute_error / value
 
 if __name__ == "__main__":
     import unittest
