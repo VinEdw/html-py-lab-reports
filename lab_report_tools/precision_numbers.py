@@ -42,18 +42,34 @@ class PrecisionNumber:
     @property
     def sig_figs(self) -> int:
         """Get the number of sig figs."""
+        return self._sig_figs
+    @property.setter
+    def sig_figs(self, value):
+        """Set the number of sig figs to the input value, and update the decimal place accordingly."""
     
     @property
     def decimal_place(self):
         """Get the place value of the lowest decimal place."""
+        return self._decimal_place
+    @property.setter
+    def decimal_place(self, value):
+        """Set the decimal place to the input value, and update the number of sig figs accordingly."""
     
     @property
-    def absolute_error():
+    def absolute_error(self):
         """Get the absolute error of the number."""
+        return self._absolute_error
+    @property.setter
+    def absolute_error(self, value):
+        """Set the absolute error to the input value, and update the relative error accordingly."""
     
     @property
-    def relative_error():
+    def relative_error(self):
         """Get the relative error of the number."""
+        return self._relative_error
+    @property.setter
+    def relative_error(self, value):
+        """Set the relative error to the input value, and update the absolute error accordingly."""
 
     
     @staticmethod
