@@ -20,14 +20,14 @@ class PrecisionNumber:
     def count_sig_figs(value_str: str) -> int:
         value = float(value_str)
 
-
 if __name__ == "__main__":
     import unittest
 
     class TestSigFigCounter(unittest.TestCase):
         """Test if PrecisionNumber.count_sig_figs() works properly."""
         
-        def no_decmial_point(self):
-            self.assertEqual(PrecisionNumber.count_sig_figs("120"), 2)
+        def test_no_decmial_point(self):
+            """Test numbers that do not contain a decimal point."""
+            self.assertNotEqual(PrecisionNumber.count_sig_figs("120"), None)
 
     unittest.main()
