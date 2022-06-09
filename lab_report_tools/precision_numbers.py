@@ -181,6 +181,7 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("-00017"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs("-9.180"), 4)
             self.assertEqual(PrecisionNumber.count_sig_figs("+00028000"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("-0.028000"), 5)
             self.assertEqual(PrecisionNumber.count_sig_figs("+1.42E-08"), 3)
 
     unittest.main(exit=False)
