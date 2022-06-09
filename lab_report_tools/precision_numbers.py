@@ -175,4 +175,4 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("0.093e+14"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.2E2"), 1)
 
-    unittest.main()
+    unittest.main(exit=False)
