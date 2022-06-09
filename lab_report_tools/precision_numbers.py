@@ -174,5 +174,13 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("1257E0"), 4)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.093e+14"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.2E2"), 1)
+        
+        def test_leading_signs(self):
+            """Test numbers that contain signs (+ or -) at the start."""
+            self.assertEqual(PrecisionNumber.count_sig_figs("+346"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("-00017"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("-9.180"), 4)
+            self.assertEqual(PrecisionNumber.count_sig_figs("+00028000"), 2)
+            self.assertEqual(PrecisionNumber.count_sig_figs("+1.42E-08"), 3)
 
     unittest.main(exit=False)
