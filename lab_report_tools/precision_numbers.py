@@ -16,6 +16,6 @@ if __name__ == "__main__":
     class TestSigFigCounter(unittest.TestCase):
         
         def no_decmial_point(self):
-            self.assertEqual(PrecisionNumber.count_sig_figs("120"), 3)
+            self.assertEqual(PrecisionNumber.count_sig_figs("120"), 2)
 
     unittest.main()
