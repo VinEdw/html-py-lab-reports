@@ -48,7 +48,7 @@ class PrecisionNumber:
     def sig_figs(self) -> int:
         """Get the number of sig figs."""
         return self._sig_figs
-    @property.setter
+    @sig_figs.setter
     def sig_figs(self, value: int):
         """Set the number of sig figs to the input value, and update the decimal place accordingly."""
         value = int(value)
@@ -59,7 +59,7 @@ class PrecisionNumber:
     def decimal_place(self) -> int:
         """Get the place value of the lowest decimal place."""
         return self._decimal_place
-    @property.setter
+    @decimal_place.setter
     def decimal_place(self, value: int):
         """Set the decimal place to the input value, and update the number of sig figs accordingly."""
         value = int(value)
@@ -70,7 +70,7 @@ class PrecisionNumber:
     def absolute_error(self) -> float:
         """Get the absolute error of the number."""
         return self._absolute_error
-    @property.setter
+    @absolute_error.setter
     def absolute_error(self, value: float|int):
         """Set the absolute error to the input value, and update the relative error accordingly."""
         value = float(value)
@@ -81,7 +81,7 @@ class PrecisionNumber:
     def relative_error(self) -> float:
         """Get the relative error of the number."""
         return self._relative_error
-    @property.setter
+    @relative_error.setter
     def relative_error(self, value: float|int):
         """Set the relative error to the input value, and update the absolute error accordingly."""
         value = float(value)
