@@ -52,6 +52,7 @@ class PrecisionNumber:
     @property.setter
     def sig_figs(self, value: int):
         """Set the number of sig figs to the input value, and update the decimal place accordingly."""
+        value = int(value)
         self._sig_figs = value
         self._decimal_place = 1 + self._leading_place_value - value
     
@@ -62,6 +63,7 @@ class PrecisionNumber:
     @property.setter
     def decimal_place(self, value: int):
         """Set the decimal place to the input value, and update the number of sig figs accordingly."""
+        value = int(value)
         self._decimal_place = value
         self._sig_figs = 1 + self._leading_place_value - value
     
