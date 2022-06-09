@@ -25,6 +25,7 @@ if __name__ == "__main__":
     import unittest
 
     class TestSigFigCounter(unittest.TestCase):
+        """Test if PrecisionNumber.count_sig_figs() works properly."""
         
         def no_decmial_point(self):
             self.assertEqual(PrecisionNumber.count_sig_figs("120"), 2)
