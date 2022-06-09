@@ -113,11 +113,15 @@ class PrecisionNumber:
         else:
             return len(value_str.strip("0"))
 
-    # @staticmethod
-    # def get_decimal_place(value_str: str) -> int:
-    #     """Get the place valueof the lowest decimal place in the input number string.
-    #     The returned value is the power 10 would need to be raised to in order to be in the proper place value."""
-    #     value = float(value_str)
+    @staticmethod
+    def get_decimal_place(value_str: str) -> int:
+        """Get the place value of the lowest decimal place in the input number string.
+        The returned value is the power 10 would need to be raised to in order to be in the proper place value.
+        """
+        value = float(value_str)
+        leading_place_value = math.floor(math.log(value, 10))
+        sf_count = PrecisionNumber.count_sig_figs(value_str)
+        return 1 + leading_place_value - sf_count
     
     @staticmethod
     def get_absolute_error(value_str: str) -> int:
