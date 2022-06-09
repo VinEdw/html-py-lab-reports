@@ -183,5 +183,11 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("+00028000"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs("-0.028000"), 5)
             self.assertEqual(PrecisionNumber.count_sig_figs("+1.42E-08"), 3)
+        
+        def test_leading_zeros(self):
+            """Test numbers that contain leading zeros."""
+            self.assertEqual(PrecisionNumber.count_sig_figs("000012000.0"), 6)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0000000100000"), 1)
+            self.assertEqual(PrecisionNumber.count_sig_figs("0000.0012070"), 5)
 
     unittest.main(exit=False)
