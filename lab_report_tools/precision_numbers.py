@@ -60,8 +60,10 @@ class PrecisionNumber:
         """Get the place value of the lowest decimal place."""
         return self._decimal_place
     @property.setter
-    def decimal_place(self, value):
+    def decimal_place(self, value: int):
         """Set the decimal place to the input value, and update the number of sig figs accordingly."""
+        self._decimal_place = value
+        self._sig_figs = 1 + self._leading_place_value - value
     
     @property
     def absolute_error(self):
