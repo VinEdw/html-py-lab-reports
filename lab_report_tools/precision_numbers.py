@@ -127,6 +127,8 @@ class PrecisionNumber:
     def get_absolute_error(value_str: str) -> int:
         """Get the absolute error of the input number string."""
         value = float(value_str)
+        decimal_place = PrecisionNumber.get_decimal_place(value_str)
+        return 10**decimal_place
 
     # @staticmethod
     # def get_relative_error(value_str: str) -> int:
