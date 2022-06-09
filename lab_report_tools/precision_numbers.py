@@ -2,6 +2,10 @@ import re
 
 class PrecisionNumber:
     def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None):
+        """Initialize a PrecisionNumber with the input *value_str*.
+        If *sig_figs* and *decimal_place* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
+        If *absolute_error* and *relative_error* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
+        """
         value_type = type(value_str)
         if value_type not in [str, float, int]:
             raise TypeError("PrecisionNumber *value_str* argument must be of type str|float|int")
