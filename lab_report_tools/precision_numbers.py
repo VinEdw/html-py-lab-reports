@@ -94,7 +94,7 @@ class PrecisionNumber:
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
         if not isinstance(other, (PrecisionNumber, float, int)):
             raise TypeError("PrecisionNumber can only be added to other numeric types.")
-        if isinstance(PrecisionNumber):
+        if isinstance(other, PrecisionNumber):
             sum = self.value + other.value
             decimal_place = max(self.decimal_place, other.decimal_place)
             absolute_error = self.absolute_error + other.absolute_error
