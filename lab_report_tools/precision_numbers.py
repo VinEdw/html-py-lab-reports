@@ -109,6 +109,21 @@ class PrecisionNumber:
             absolute_error = self.absolute_error
         return PrecisionNumber(sum, decimal_place=decimal_place, absolute_error=absolute_error)
 
+    def __mul__(self, other: 'PrecisionNumber|float|int', /):
+        """When two numbers are multiplied together, the lower number of sig figs is used in the result and the relative errors add together."""
+        if not isinstance(other, (PrecisionNumber, float, int)):
+            raise TypeError("PrecisionNumber can only be multiplied to other numeric types.")
+        if isinstance(other, PrecisionNumber):
+            product = self.value * other.value
+            sig_figs = min(self.sig_figs, other.sig_figs)
+            relative_error = self.relative_error + other.relative_error
+        else:
+            product = self.value * other
+            sig_figs = self.sig_figs
+            relative_error = self.relative_error
+        return PrecisionNumber(product, sig_figs=sig_figs, relative_error=relative_error)
+
+    
     
     @staticmethod
     def count_sig_figs(value_str: str) -> int:
