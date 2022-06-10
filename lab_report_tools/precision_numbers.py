@@ -88,7 +88,7 @@ class PrecisionNumber:
         self._relative_error = value * self._value
 
 
-    def __add__(self, value, /):
+    def __add__(self, value: 'PrecisionNumber|float|int', /):
         """When two numbers are added together, the lower decimal place is used in the result and the absolute errors add together."""
         value_type = type(value)
 
