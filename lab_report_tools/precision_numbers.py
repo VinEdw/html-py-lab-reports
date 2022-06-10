@@ -6,8 +6,7 @@ class PrecisionNumber:
         If *sig_figs* and *decimal_place* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
         If *absolute_error* and *relative_error* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
         """
-        value_type = type(value_str)
-        if value_type not in [str, float, int]:
+        if not isinstance(value_str, (str, float, int)):
             raise TypeError("PrecisionNumber *value_str* argument must be of type str|float|int")
         self._value = float(value_str)
         self._leading_place_value = math.floor(math.log(self._value, 10))
@@ -15,11 +14,11 @@ class PrecisionNumber:
         if sig_figs == None and decimal_place == None:
             self.sig_figs = self.count_sig_figs(str(value_str))
         elif sig_figs != None and decimal_place == None:
-            if type(sig_figs) is not int:
+            if not isinstance(sig_figs, int):
                 raise TypeError("*sig_figs* argument should be an int")
             self.sig_figs = sig_figs
         elif sig_figs == None and decimal_place != None:
-            if type(decimal_place) is not int:
+            if not isinstance(decimal_place, int):
                 raise TypeError("*decimal_place* argument should be an int")
             self.decimal_place = decimal_place
         else:
@@ -28,11 +27,11 @@ class PrecisionNumber:
         if absolute_error == None and relative_error == None:
             self.absolute_error = self.get_absolute_error(str(value_str))
         elif absolute_error != None and relative_error == None:
-            if type(absolute_error) not in [float, int]:
+            if not isinstance(absolute_error, (float, int)):
                 raise TypeError("*absolute_error* argument should be a float or int")
             self.absolute_error = absolute_error
         elif absolute_error == None and relative_error != None:
-            if type(relative_error) not in [float, int]:
+            if not isinstance(relative_error, (float, int)):
                 raise TypeError("*relative_error* argument should be a float or int")
             self.relative_error = relative_error
         else:
