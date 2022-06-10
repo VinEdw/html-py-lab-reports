@@ -90,9 +90,19 @@ class PrecisionNumber:
         self._relative_error = value * self._value
 
 
-    def __add__(self, value: 'PrecisionNumber|float|int', /):
-        """When two numbers are added together, the lower decimal place is used in the result and the absolute errors add together."""
-        value_type = type(value)
+    def __add__(self, other: 'PrecisionNumber|float|int', /):
+        """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
+        if not isinstance(other, (PrecisionNumber, float, int)):
+            raise TypeError("PrecisionNumber can only be added to other numeric types.")
+        if isinstance(PrecisionNumber):
+            sum = self.value + other.value
+            decimal_place = max(self.decimal_place, other.decimal_place)
+            absolute_error = self.absolute_error + other.absolute_error
+        else:
+            sum = self.value + other
+            decimal_place = self.decimal_place
+            absolute_error = self.absolute_error
+        return PrecisionNumber(sum, decimal_place=decimal_place, absolute_error=absolute_error)
 
     
     @staticmethod
