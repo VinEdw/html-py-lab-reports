@@ -38,6 +38,11 @@ class PrecisionNumber:
             self.relative_error = relative_error
         else:
             raise ValueError("*absolute_error* and *relative_error* cannot both be defined")
+    
+    def __repr__(self) -> str:
+        """Method to return a string representing the PrecisionNumber object instance."""
+        return f"PrecisionNumber({self.value}, sig_figs={self.sig_figs}, absolute_error={self.absolute_error})"
+
             
         
     @property
