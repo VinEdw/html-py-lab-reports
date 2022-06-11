@@ -98,7 +98,7 @@ class PrecisionNumber:
     def __add__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
         if not isinstance(other, (PrecisionNumber, float, int)):
-            raise TypeError("PrecisionNumber can only be added to other numeric types.")
+            return NotImplemented
         if isinstance(other, PrecisionNumber):
             sum = self.value + other.value
             decimal_place = max(self.decimal_place, other.decimal_place)
@@ -112,7 +112,7 @@ class PrecisionNumber:
     def __mul__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are multiplied together, the lower number of sig figs is used in the result and the relative errors add together."""
         if not isinstance(other, (PrecisionNumber, float, int)):
-            raise TypeError("PrecisionNumber can only be multiplied to other numeric types.")
+            return NotImplemented
         if isinstance(other, PrecisionNumber):
             product = self.value * other.value
             sig_figs = min(self.sig_figs, other.sig_figs)
