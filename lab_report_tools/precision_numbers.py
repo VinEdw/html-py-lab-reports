@@ -229,4 +229,10 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("0000000100000"), 1)
             self.assertEqual(PrecisionNumber.count_sig_figs("0000.0012070"), 5)
 
+    class TestOperations(unittest.testCase):
+        """Test if the operations with PrecisionNumber objects work properly."""
+        def test_addition(self):
+            """Test if addition (+) works properly."""
+
+
     unittest.main(exit=False)
