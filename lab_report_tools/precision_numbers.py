@@ -106,6 +106,39 @@ class PrecisionNumber:
         else:
             return NotImplemented
 
+    def __ne__(self, other: 'PrecisionNumber') -> bool:
+        """Two numbers are not equal if they do not have the same value, number of sig figs, and absolute error."""
+        return not (self == other)
+
+    def __lt__(self, other: 'PrecisionNumber') -> bool:
+        """The values of the numbers should be compared as expected."""
+        if isinstance(other, PrecisionNumber):
+            return self.value < other.value
+        else:
+            return NotImplemented
+
+    def __le__(self, other: 'PrecisionNumber') -> bool:
+        """The values of the numbers should be compared as expected."""
+        if isinstance(other, PrecisionNumber):
+            return self.value <= other.value
+        else:
+            return NotImplemented
+
+    def __gt__(self, other: 'PrecisionNumber') -> bool:
+        """The values of the numbers should be compared as expected."""
+        if isinstance(other, PrecisionNumber):
+            return self.value > other.value
+        else:
+            return NotImplemented
+
+    def __ge__(self, other: 'PrecisionNumber') -> bool:
+        """The values of the numbers should be compared as expected."""
+        if isinstance(other, PrecisionNumber):
+            return self.value >= other.value
+        else:
+            return NotImplemented
+
+
     def __add__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
         if isinstance(other, PrecisionNumber):
