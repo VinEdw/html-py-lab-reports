@@ -227,7 +227,7 @@ class PrecisionNumber:
         The returned value is the power 10 would need to be raised to in order to be in the proper place value.
         """
         value = float(value_str)
-        leading_place_value = math.floor(math.log(value, 10))
+        leading_place_value = math.floor(math.log(abs(value), 10))
         sf_count = PrecisionNumber.count_sig_figs(value_str)
         return 1 + leading_place_value - sf_count
     
