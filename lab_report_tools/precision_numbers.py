@@ -196,7 +196,20 @@ class PrecisionNumber:
         """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
         return (-1 * self) + other
     
-    
+    def __truediv__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
+        """When two numbers are divided, the lower number of sig figs is used in the result and the relative errors add together."""
+        if isinstance(other, PrecisionNumber):
+            quotient = self.value / other.value
+            sig_figs = min(self.sig_figs, other.sig_figs)
+            relative_error = self.relative_error + other.relative_error
+        elif isinstance(other, (float, int)):
+            quotient = self.value / other
+            sig_figs = self.sig_figs
+            relative_error = self.relative_error
+        else:
+            return NotImplemented
+        return PrecisionNumber(quotient, sig_figs=sig_figs, relative_error=relative_error)
+
     @staticmethod
     def count_sig_figs(value_str: str) -> int:
         """Count the number of significant figures (sig figs) in the input number string."""
