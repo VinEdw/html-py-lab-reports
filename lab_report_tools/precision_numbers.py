@@ -166,7 +166,7 @@ class PrecisionNumber:
             return NotImplemented
         return PrecisionNumber(sum, decimal_place=decimal_place, absolute_error=absolute_error)
 
-    def __radd__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
+    def __radd__(self, other: 'float|int', /) -> 'PrecisionNumber':
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
         return self + other
 
@@ -184,7 +184,7 @@ class PrecisionNumber:
             return NotImplemented
         return PrecisionNumber(product, sig_figs=sig_figs, relative_error=relative_error)
 
-    def __rmul__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
+    def __rmul__(self, other: 'float|int', /) -> 'PrecisionNumber':
         """When two numbers are multiplied together, the lower number of sig figs is used in the result and the relative errors add together."""
         return self * other
 
@@ -192,7 +192,7 @@ class PrecisionNumber:
         """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
         return self + (-1 * other)
 
-    def __rsub__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
+    def __rsub__(self, other: 'float|int', /) -> 'PrecisionNumber':
         """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
         return (-1 * self) + other
     
