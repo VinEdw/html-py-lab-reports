@@ -11,7 +11,7 @@ class PrecisionNumber:
         if not isinstance(value_str, (str, float, int)):
             raise TypeError("PrecisionNumber *value_str* argument must be of type str|float|int")
         self._value = float(value_str)
-        self._leading_place_value = math.floor(math.log(abs(self)._value, 10))
+        self._leading_place_value = math.floor(math.log(abs(self._value), 10))
 
         if sig_figs == None and decimal_place == None:
             self.sig_figs = self.count_sig_figs(str(value_str))
