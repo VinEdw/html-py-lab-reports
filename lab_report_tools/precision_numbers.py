@@ -371,5 +371,14 @@ if __name__ == "__main__":
             self.assertEqual(1 / PrecisionNumber("2"),
                 PrecisionNumber(0.5, sig_figs=1, relative_error=0.5))
 
+        def test_exponentiation(self):
+            """Test if raising an uncertain number to an exact power (**) works properly."""
+            self.assertEqual(PrecisionNumber("2")**-1,
+                PrecisionNumber(0.5, sig_figs=1, relative_error=0.5))
+            self.assertEqual(PrecisionNumber("15.5")**3,
+                PrecisionNumber(3_723.875, sig_figs=3, absolute_error=72.075))
+            self.assertEqual(PrecisionNumber("64")**0.5,
+                PrecisionNumber(8, sig_figs=2, relative_error=0.0078125))
+
 
     unittest.main(exit=False)
