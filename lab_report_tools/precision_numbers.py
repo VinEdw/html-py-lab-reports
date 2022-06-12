@@ -142,6 +142,10 @@ class PrecisionNumber:
         """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
         return self + (-1 * other)
     
+    def __rsub__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
+        """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
+        return (-1 * self) + other
+    
     
     @staticmethod
     def count_sig_figs(value_str: str) -> int:
