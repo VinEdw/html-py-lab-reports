@@ -209,6 +209,17 @@ class PrecisionNumber:
         else:
             return NotImplemented
         return PrecisionNumber(quotient, sig_figs=sig_figs, relative_error=relative_error)
+    
+    def __rtruediv__(self, other: 'float|int', /) -> 'PrecisionNumber':
+        """When two numbers are divided, the lower number of sig figs is used in the result and the relative errors add together."""
+        if isinstance(other, (float, int)):
+            quotient = other / self.value
+            sig_figs = self.sig_figs
+            relative_error = self.relative_error
+            return PrecisionNumber(quotient, sig_figs=sig_figs, relative_error=relative_error)
+        else:
+            return NotImplemented
+
 
     @staticmethod
     def count_sig_figs(value_str: str) -> int:
