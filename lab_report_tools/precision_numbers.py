@@ -248,6 +248,11 @@ if __name__ == "__main__":
             """Test if addition (+) works properly."""
             self.assertEqual(PrecisionNumber("65.0") + PrecisionNumber("0.05") + PrecisionNumber("179.1"),
                 PrecisionNumber("244.15", decimal_place=-1 ,absolute_error=0.21))
+        
+        def test_subtraction(self):
+            """Test if subtraction (-) works properly."""
+            self.assertEqual(PrecisionNumber("175") - PrecisionNumber("22.5"),
+                PrecisionNumber(152.5, decimal_place=0, absolute_error=1.1))
 
 
     unittest.main(exit=False)
