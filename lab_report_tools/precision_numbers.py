@@ -215,7 +215,7 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("0.0025"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs(".000108"), 3)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.00040600"), 5)
-        
+
         def test_with_scientific_notation(self):
             """Test numbers that are written in scientific notation (or at least contain an E)."""
             self.assertEqual(PrecisionNumber.count_sig_figs("1.25E+09"), 3)
@@ -226,7 +226,7 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("1257E0"), 4)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.093e+14"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs("0.2E2"), 1)
-        
+
         def test_leading_signs(self):
             """Test numbers that contain signs (+ or -) at the start."""
             self.assertEqual(PrecisionNumber.count_sig_figs("+346"), 3)
@@ -235,7 +235,7 @@ if __name__ == "__main__":
             self.assertEqual(PrecisionNumber.count_sig_figs("+00028000"), 2)
             self.assertEqual(PrecisionNumber.count_sig_figs("-0.028000"), 5)
             self.assertEqual(PrecisionNumber.count_sig_figs("+1.42E-08"), 3)
-        
+
         def test_leading_zeros(self):
             """Test numbers that contain leading zeros."""
             self.assertEqual(PrecisionNumber.count_sig_figs("000012000.0"), 6)
