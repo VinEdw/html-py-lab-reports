@@ -141,7 +141,7 @@ class PrecisionNumber:
     def __sub__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
         return self + (-1 * other)
-    
+
     def __rsub__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
         return (-1 * self) + other
@@ -264,6 +264,8 @@ if __name__ == "__main__":
             """Test if subtraction (-) works properly."""
             self.assertEqual(PrecisionNumber("175") - PrecisionNumber("22.5"),
                 PrecisionNumber(152.5, decimal_place=0, absolute_error=1.1))
+            self.assertEqual(100 - PrecisionNumber("63.2"),
+                PrecisionNumber(36.8, sig_figs=3, absolute_error=0.1))
 
 
     unittest.main(exit=False)
