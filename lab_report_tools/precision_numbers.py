@@ -97,30 +97,30 @@ class PrecisionNumber:
 
     def __add__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
-        if not isinstance(other, (PrecisionNumber, float, int)):
-            return NotImplemented
         if isinstance(other, PrecisionNumber):
             sum = self.value + other.value
             decimal_place = max(self.decimal_place, other.decimal_place)
             absolute_error = self.absolute_error + other.absolute_error
-        else:
+        elif isinstance(other, (float, int)):
             sum = self.value + other
             decimal_place = self.decimal_place
             absolute_error = self.absolute_error
+        else:
+            return NotImplemented
         return PrecisionNumber(sum, decimal_place=decimal_place, absolute_error=absolute_error)
 
     def __mul__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are multiplied together, the lower number of sig figs is used in the result and the relative errors add together."""
-        if not isinstance(other, (PrecisionNumber, float, int)):
-            return NotImplemented
         if isinstance(other, PrecisionNumber):
             product = self.value * other.value
             sig_figs = min(self.sig_figs, other.sig_figs)
             relative_error = self.relative_error + other.relative_error
-        else:
+        elif isinstance(other, (float, int)):
             product = self.value * other
             sig_figs = self.sig_figs
             relative_error = self.relative_error
+        else:
+            return NotImplemented
         return PrecisionNumber(product, sig_figs=sig_figs, relative_error=relative_error)
 
     
