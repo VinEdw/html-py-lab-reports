@@ -139,6 +139,19 @@ class PrecisionNumber:
             return NotImplemented
 
 
+    def __pos__(self) -> 'PrecisionNumber':
+        """The positive of a number is just that number."""
+        return self * 1
+    
+    def __neg__(self) -> 'PrecisionNumber':
+        """The negative of a number is just that number with its value multipiled by negative one."""
+        return self * -1
+    
+    def __abs__(self) -> 'PrecisionNumber':
+        """The absolute value of a number just that number with its value made positive."""
+        return PrecisionNumber(abs(self.value), sig_figs=self.sig_figs, absolute_error=self.absolute_error)
+
+
     def __add__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
         if isinstance(other, PrecisionNumber):
@@ -298,6 +311,8 @@ if __name__ == "__main__":
                 PrecisionNumber("244.15", decimal_place=-1 ,absolute_error=0.21))
             self.assertEqual(273.15 + PrecisionNumber("24.1"),
                 PrecisionNumber(297.25, decimal_place=-1, absolute_error=0.1))
+            self.assertEqual(+PrecisionNumber("24"), 
+                PrecisionNumber("24"))
         
         def test_subtraction(self):
             """Test if subtraction (-) works properly."""
@@ -305,6 +320,8 @@ if __name__ == "__main__":
                 PrecisionNumber(152.5, decimal_place=0, absolute_error=1.1))
             self.assertEqual(100 - PrecisionNumber("63.2"),
                 PrecisionNumber(36.8, sig_figs=3, absolute_error=0.1))
+            self.assertEqual(-PrecisionNumber("24"), 
+                PrecisionNumber("-24"))
 
 
     unittest.main(exit=False)
