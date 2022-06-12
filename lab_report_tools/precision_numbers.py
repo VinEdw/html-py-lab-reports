@@ -97,9 +97,9 @@ class PrecisionNumber:
     def __eq__(self, other: 'PrecisionNumber') -> bool:
         """Two numbers are equal if they have the same value, number of sig figs, and absolute error."""
         if isinstance(other, PrecisionNumber):
-            return self.value == other.value and\
-                self.sig_figs == other.sig_figs and\
-                self.absolute_error == other.absolute_error
+            return math.isclose(self.value, other.value) and\
+                math.isclose(self.sig_figs, other.sig_figs) and\
+                math.isclose(self.absolute_error, other.absolute_error)
         else:
             return NotImplemented
 
