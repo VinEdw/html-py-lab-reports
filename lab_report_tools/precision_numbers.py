@@ -123,6 +123,9 @@ class PrecisionNumber:
             return NotImplemented
         return PrecisionNumber(product, sig_figs=sig_figs, relative_error=relative_error)
 
+    def __sub__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
+        """When two numbers are subtracted, the higher decimal place is used in the result and the absolute errors add together."""
+        return self + (-1 * other)
     
     
     @staticmethod
