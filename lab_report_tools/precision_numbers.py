@@ -81,7 +81,7 @@ class PrecisionNumber:
         """Set the absolute error to the input value, and update the relative error accordingly."""
         value = float(value)
         self._absolute_error = value
-        self._relative_error = value / self._value
+        self._relative_error = value / abs(self._value)
     
     @property
     def relative_error(self) -> float:
@@ -92,7 +92,7 @@ class PrecisionNumber:
         """Set the relative error to the input value, and update the absolute error accordingly."""
         value = float(value)
         self._absolute_error = value
-        self._relative_error = value * self._value
+        self._relative_error = value * abs(self._value)
 
     def __eq__(self, other: 'PrecisionNumber') -> bool:
         """Two numbers are equal if they have the same value, number of sig figs, and absolute error."""
