@@ -94,6 +94,14 @@ class PrecisionNumber:
         self._absolute_error = value
         self._relative_error = value * self._value
 
+    def __eq__(self, other: 'PrecisionNumber') -> bool:
+        """Two numbers are equal if they have the same value, number of sig figs, and absolute error."""
+        if isinstance(other, PrecisionNumber):
+            return self.value == other.value and\
+                self.sig_figs == other.sig_figs and\
+                self.absolute_error == other.absolute_error
+        else:
+            return NotImplemented
 
     def __add__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
         """When two numbers are added together, the higher decimal place is used in the result and the absolute errors add together."""
