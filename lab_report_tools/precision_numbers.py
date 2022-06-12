@@ -353,6 +353,13 @@ if __name__ == "__main__":
                 PrecisionNumber(18.36, sig_figs=2, relative_error=(1/17 + 0.01/1.08)))
             self.assertEqual(PrecisionNumber("23.0") * PrecisionNumber("2"),
                 PrecisionNumber(46, sig_figs=1, relative_error=(0.1/23 + 1/2)))
+        
+        def test_division(self):
+            """Test if division (/) works properly."""
+            self.assertEqual(PrecisionNumber("3.23E-23") / PrecisionNumber("2.1E-10"),
+                PrecisionNumber(1.538095238095238e-13, sig_figs=2, absolute_error=7.800453514739228e-15))
+            self.assertEqual(1 / PrecisionNumber("2"),
+                PrecisionNumber(0.5, sig_figs=1, relative_error=0.5))
 
 
     unittest.main(exit=False)
