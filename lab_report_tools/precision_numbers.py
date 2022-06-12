@@ -241,7 +241,8 @@ if __name__ == "__main__":
         """Test if the operations with PrecisionNumber objects work properly."""
         def test_equality(self):
             """Test if the equality operator (==) works properly."""
-            self.assertEqual(PrecisionNumber(0.1, sig_figs=3, absolute_error=0.001) + PrecisionNumber(0.2, sig_figs=3, absolute_error=0.001), PrecisionNumber(0.3, decimal_place=-3, absolute_error=0.002))
+            self.assertEqual(PrecisionNumber(0.1, sig_figs=3, absolute_error=0.001) + PrecisionNumber(0.2, sig_figs=3, absolute_error=0.001), 
+                PrecisionNumber(0.3, decimal_place=-3, absolute_error=0.002))
 
         def test_addition(self):
             """Test if addition (+) works properly."""
