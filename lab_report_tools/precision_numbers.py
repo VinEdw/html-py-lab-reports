@@ -246,6 +246,8 @@ if __name__ == "__main__":
 
         def test_addition(self):
             """Test if addition (+) works properly."""
+            self.assertEqual(PrecisionNumber("65.0") + PrecisionNumber("0.05") + PrecisionNumber("179.1"),
+                PrecisionNumber("244.15", decimal_place=-1 ,absolute_error=0.21))
 
 
     unittest.main(exit=False)
