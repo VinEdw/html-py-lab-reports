@@ -219,6 +219,16 @@ class PrecisionNumber:
             return PrecisionNumber(quotient, sig_figs=sig_figs, relative_error=relative_error)
         else:
             return NotImplemented
+    
+    def __pow__(self, other: 'float|int', /) -> 'PrecisionNumber':
+        """When a number is raised to an exact power, the uncertainty propogates as if it were repeated multiplication."""
+        if isinstance(other, (float, int)):
+            power = self.value ** other
+            sig_figs = self.sig_figs
+            relative_error = abs(self.relative_error * other)
+            return PrecisionNumber(power, sig_figs=sig_figs, relative_error=relative_error)
+        else:
+            return NotImplemented
 
 
     @staticmethod
