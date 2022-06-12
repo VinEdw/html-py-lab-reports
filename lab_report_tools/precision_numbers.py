@@ -263,6 +263,8 @@ if __name__ == "__main__":
             """Test if addition (+) works properly."""
             self.assertEqual(PrecisionNumber("65.0") + PrecisionNumber("0.05") + PrecisionNumber("179.1"),
                 PrecisionNumber("244.15", decimal_place=-1 ,absolute_error=0.21))
+            self.assertEqual(273.15 + PrecisionNumber("24.1"),
+                PrecisionNumber(297.25, decimal_place=-1, absolute_error=0.1))
         
         def test_subtraction(self):
             """Test if subtraction (-) works properly."""
