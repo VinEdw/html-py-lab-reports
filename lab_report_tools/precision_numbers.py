@@ -1,7 +1,9 @@
 import math
 
 class PrecisionNumber:
-    """This class is used to create numbers that also have the number of sig figs and the absolute error attached to them and propogated through operations."""
+    """This class is used to create numbers that also have the number of sig figs and the absolute error attached to them and propogated through operations.
+    Operations with normal float|int numbers will interpret them as being exact numbers.
+    """
 
     def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None):
         """Initialize a PrecisionNumber with the input *value_str*.
