@@ -94,6 +94,7 @@ class PrecisionNumber:
         self._relative_error = value
         self._absolute_error = value * abs(self._value)
 
+
     def __eq__(self, other: 'PrecisionNumber') -> bool:
         """Two numbers are equal if they have the same value, number of sig figs, and absolute error."""
         if isinstance(other, PrecisionNumber):
