@@ -322,6 +322,13 @@ if __name__ == "__main__":
                 PrecisionNumber(36.8, sig_figs=3, absolute_error=0.1))
             self.assertEqual(-PrecisionNumber("24"), 
                 PrecisionNumber("-24"))
+        
+        def test_multiplication(self):
+            """Test if multiplication (*) works properly."""
+            self.assertEqual(PrecisionNumber("17") * PrecisionNumber("1.08"),
+                PrecisionNumber(18.36, sig_figs=2, relative_error=(1/17 + 0.01/1.08)))
+            self.assertEqual(PrecisionNumber("23.0") * PrecisionNumber("2"),
+                PrecisionNumber(46, sig_figs=1, relative_error=(0.1/23 + 1/2)))
 
 
     unittest.main(exit=False)
