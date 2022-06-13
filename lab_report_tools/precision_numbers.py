@@ -1,5 +1,9 @@
 import math
 
+def get_leading_place_value(value) -> int:
+    """Get the place value of the leading digit of the input number."""
+    return math.floor(math.log(abs(value), 10))
+
 class PrecisionNumber:
     """This class is used to create numbers that also have the number of sig figs and the absolute error attached to them and propogated through operations.
     Operations with normal float|int numbers will interpret them as being exact numbers.
