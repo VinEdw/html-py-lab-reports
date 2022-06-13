@@ -1,6 +1,6 @@
 import math
 
-def get_leading_place_value(value) -> int:
+def get_leading_place_value(value: float|int) -> int:
     """Get the place value of the leading digit of the input number."""
     return math.floor(math.log(abs(value), 10))
 
@@ -17,7 +17,7 @@ class PrecisionNumber:
         if not isinstance(value_str, (str, float, int)):
             raise TypeError("PrecisionNumber *value_str* argument must be of type str|float|int")
         self._value = float(value_str)
-        self._leading_place_value = math.floor(math.log(abs(self._value), 10))
+        self._leading_place_value = get_leading_place_value(self.value)
 
         if sig_figs == None and decimal_place == None:
             self.sig_figs = self.count_sig_figs(str(value_str))
@@ -265,7 +265,7 @@ class PrecisionNumber:
         The returned value is the power 10 would need to be raised to in order to be in the proper place value.
         """
         value = float(value_str)
-        leading_place_value = math.floor(math.log(abs(value), 10))
+        leading_place_value = get_leading_place_value(value)
         sf_count = PrecisionNumber.count_sig_figs(value_str)
         return 1 + leading_place_value - sf_count
     
