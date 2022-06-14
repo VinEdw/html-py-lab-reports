@@ -3,10 +3,14 @@ import math
 def get_leading_place_value(value: float|int) -> int:
     """Get the place value of the leading digit of the input number."""
     return math.floor(math.log(abs(value), 10))
+    
+def string_to_sig_figs(value: float|int, sig_figs: int) -> str:
+    """Return the string representation of the input value rounded to the desired number of significant figures."""
+    return f"{value:#.{sig_figs}G}"
 
 def round_to_sig_figs(value: float|int, sig_figs: int) -> float:
     """Round the input value to the desired number of significant figures."""
-    return float(f"{value:.{sig_figs}G}")
+    return float(string_to_sig_figs(value, sig_figs))
 
 
 class PrecisionNumber:
