@@ -18,7 +18,7 @@ class PrecisionNumber:
     Operations with normal float|int numbers will interpret them as being exact numbers.
     """
 
-    def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None, default_style: str = "sig_figs"):
+    def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None, default_style: str = "sig_figs") -> None:
         """Initialize a PrecisionNumber with the input *value_str*.
         If *sig_figs* and *decimal_place* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
         If *absolute_error* and *relative_error* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
