@@ -58,6 +58,29 @@ class PrecisionNumber:
         """Method to return a string representing the PrecisionNumber object instance."""
         return f"PrecisionNumber({self.value}, sig_figs={self.sig_figs}, absolute_error={self.absolute_error})"
 
+    def formatted(self, style: str) -> str:
+        """Return a string representation of the number according to the input style."""
+        if style == "sig_figs":
+            return string_to_sig_figs(self.value, self.sig_figs)
+        elif style == "absolute_error":
+            abs_err_rounded = round_to_sig_figs(self.absolute_error, 1)
+            abs_err_pv = get_leading_place_value(abs_err_rounded)
+            rounded_value_str = string_to_sig_figs(self.value, 1+(get_leading_place_value(round(self.value, -abs_err_pv)))-abs_err_pv)
+            if "E" in rounded_value_str:
+                num_part, power_part = rounded_value_str.split("E")
+                power_part_value = int(power_part)
+                decimalized_abs_err = f"{abs_err_rounded / 10**power_part_value:.{-abs_err_pv + power_part_value}f}"
+                return f"({num_part} ± {decimalized_abs_err})E{power_part}"
+            else:
+                return f"{rounded_value_str} ± {abs_err_rounded:.{-abs_err_pv}f}"
+        elif style == "relative_error":
+            percent_err_str = string_to_sig_figs(self.relative_error * 100, 3) + "%"
+            abs_err_rounded = round_to_sig_figs(self.absolute_error, 1)
+            abs_err_pv = get_leading_place_value(abs_err_rounded)
+            rounded_value_str = string_to_sig_figs(self.value, 1+(get_leading_place_value(round(self.value, -abs_err_pv)))-abs_err_pv)
+            return f"{rounded_value_str} ± {percent_err_str}"
+        else:
+            return repr(self)
             
         
     @property
