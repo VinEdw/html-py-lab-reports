@@ -18,7 +18,7 @@ class PrecisionNumber:
     Operations with normal float|int numbers will interpret them as being exact numbers.
     """
 
-    def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None):
+    def __init__(self, value_str: str|float|int, *, sig_figs: int = None, decimal_place: int = None, absolute_error: float|int = None, relative_error: float|int = None, default_style: str = "sig_figs"):
         """Initialize a PrecisionNumber with the input *value_str*.
         If *sig_figs* and *decimal_place* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
         If *absolute_error* and *relative_error* are both not set, then they will be inferred automatically. If one is set, that value will be used to deterine both. If both are set, then an error will be raised.
@@ -27,6 +27,7 @@ class PrecisionNumber:
             raise TypeError("PrecisionNumber *value_str* argument must be of type str|float|int")
         self._value = float(value_str)
         self._leading_place_value = get_leading_place_value(self.value)
+        self.default_style = default_style
 
         if sig_figs == None and decimal_place == None:
             self.sig_figs = self.count_sig_figs(str(value_str))
@@ -57,6 +58,12 @@ class PrecisionNumber:
     def __repr__(self) -> str:
         """Method to return a string representing the PrecisionNumber object instance."""
         return f"PrecisionNumber({self.value}, sig_figs={self.sig_figs}, absolute_error={self.absolute_error})"
+    
+    def __str__(self) -> str:
+        """Method to return a nice string representation of the PrecisionNumber object instance.
+        *default_style* is passed to the *formatted* method to generate the str.
+        """
+        return self.formatted(self.default_style)
 
     def formatted(self, style: str) -> str:
         """Return a string representation of the number according to the input style."""
