@@ -17,7 +17,8 @@ class DataTable:
 
     def __repr__(self) -> str:
         """Method to return a string representing the DataTable object instance."""
-        return f"DataTable({self.labels}, **{self._columns})"
+        sorted_colmuns = {key: val for key, val in self.items()}
+        return f"DataTable({self.labels}, **{sorted_colmuns})"
     
     def __getitem__(self, key: str) -> list:
         """Get a shallow copy of the column data identified by the column key string."""
