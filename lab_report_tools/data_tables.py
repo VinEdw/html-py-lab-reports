@@ -94,3 +94,12 @@ class DataTable:
         """Check if the data lists in each column are all of the same length. In other words, if the table is rectangular."""
         length_pass_list = (len(val) == self._row_count for val in self._columns.values()) 
         return all(length_pass_list)
+    
+    def rows(self, return_dict: bool = False):
+        """Iterate through the table by rows. By default, each row item returned as a list. If *return_dict* is set to True, the rows are returned in dictionaries."""
+        for i in range(self._row_count):
+            if return_dict:
+                row = {name:self._columns[name][i] for name in self._headers}
+            else:
+                row = [self._columns[name][i] for name in self._headers]
+            yield row
