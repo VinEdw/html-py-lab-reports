@@ -186,14 +186,6 @@ class DataTable:
         if label != None:
             self.labels[name] = label
     
-    def for_each(self, name: str, func):
-        """For each item in the specified column, perform the operation specified by the callback function.
-        This can be useful for operating on each mutable item in a column or doing a special print for each item.
-        """
-        if not callable(func):
-            raise TypeError("func should be callable in the for_each method")
-        for item in self[name]:
-            func(item)
 
     @staticmethod
     def from_csv(file_location, dialect = "v_custom"):
