@@ -57,7 +57,7 @@ class PrecisionNumber:
     
     def __repr__(self) -> str:
         """Method to return a string representing the PrecisionNumber object instance."""
-        return f"PrecisionNumber({self.value}, sig_figs={self.sig_figs}, absolute_error={self.absolute_error})"
+        return f"PrecisionNumber({self.value}, sig_figs={self.sig_figs}, absolute_error={self.absolute_error}{'' if self.default_style == 'sig_figs' else ', default_style=' + repr(self.default_style)})"
     
     def __str__(self) -> str:
         """Method to return a nice string representation of the PrecisionNumber object instance.
