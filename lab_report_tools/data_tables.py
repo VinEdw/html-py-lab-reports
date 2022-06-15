@@ -137,29 +137,29 @@ class DataTable:
             row = self.get_row(i, return_dict)
             yield row
 
-    def calc(self, func):
+    def calc(self, func, use_dict: bool = True):
         """Perform a row-wise operation to generate a list of data based on the existing content in the columns.
         A function should be passed in that accepts one or two positional parameters. 
-        The first parameter of the callback function will be passed the current row data as a dictionary.
-        The second parameter will be passed the index of the current row.
+        The callback function will be passed the current row data as a dictionary by default, and a list if *use_dict* is set to False.
         """
         if not callable(func):
             raise TypeError("func should be callable in the DataTable calc() method.")
         result = []
-        for i, row in enumerate(self.rows()):
-            val = func(row, i)
+        for row in self.rows(return_dict=use_dict):
+            val = func(row)
             result.append(val)
         return result
     
-    def create_column(self, data_or_func, name: str, *, index: int = None, label: str = None):
+    def create_column(self, data_or_func, name: str, *, index: int = None, label: str = None, use_dict: bool = True):
         """Create a column and add it to the table. 
         If *data_or_func* is callable, it will be passed into calc and used to generate the table. If not, it will be turend into a list to be used as column data.
         *name* is the name to be given to the column and used as an identifying key. It should be unique in the table.
         *index* is the position where the column will show up in the string representation of the table. If left unspecified, the column will be placed at the end of the table.
         *label* is what will show up in the string representation of the table as the header for the column. If left unspecified, name will be used instead.
+        The callback function will be passed the current row data as a dictionary by default, and a list if *use_dict* is set to False.
         """
         if callable(data_or_func):
-            data = self.calc(data_or_func)
+            data = self.calc(data_or_func, use_dict=use_dict)
         else:
             data = list(data_or_func)
         self[name] = data
