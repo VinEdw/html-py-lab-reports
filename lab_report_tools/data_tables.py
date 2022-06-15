@@ -10,12 +10,9 @@ class DataTable:
         if labels == None:
             labels = {}
         self.labels = labels.copy()
-        self._headers = []
-        self._columns = {}
-        for key, val in columns.items():
-            self._headers.append(key)
-            self._columns[key] = list(val).copy()
-        self._row_count = len(val)
+        self._headers = [key for key in columns.keys()]
+        self._columns = {key: list(val).copy() for key, val in columns.items()}
+        self._row_count = len(columns[self._headers[0]])
         if not self._check_rectangular():
             raise ValueError("The data lists in each column all need to be of the same length.")
 
@@ -30,7 +27,7 @@ class DataTable:
             raise TypeError("Column keys must be strings.")
         if key not in self._columns:
             raise KeyError("Column key not found.")
-        column_data: list = self._columns[key]
+        column_data = self._columns[key]
         return column_data.copy()
     
     def __setitem__(self, key: str, value: list):
