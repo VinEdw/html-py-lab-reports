@@ -21,6 +21,13 @@ class DataTable:
         sorted_colmuns = {key: val for key, val in self.items()}
         return f"DataTable({self.labels}, **{sorted_colmuns})"
     
+    def __str__(self) -> str:
+        """Return a pretty string representation of the table."""
+        line_list = []
+        for head, col in self.items():
+            label = self.labels.get(head, head)
+            str_list = [str(cell) for cell in col.insert(0, label)]
+
     def __getitem__(self, key: str) -> list:
         """Get a shallow copy of the column data identified by the column key string."""
         if not isinstance(key, str):
@@ -48,6 +55,8 @@ class DataTable:
             raise KeyError("Column key not found.")
         del self._columns[key]
         self._headers.remove(key)
+        if key in self.labels:
+            del self.labels[key]
     
     def __iter__(self):
         """Return the headers (column keys) when the table is iterated over."""
