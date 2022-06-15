@@ -100,11 +100,8 @@ class DataTable:
 
     def move_column(self, name: str, i: int):
         """Move the column of the input name to the given column index in the table."""
-        if name not in self:
-            raise ValueError("Column name not in table.")
         self._headers.remove(name)
         self._headers.insert(i, name)
-
     
     def get_row(self, i: int, return_dict: bool = False):
         """Get the values of table at the given row index.
