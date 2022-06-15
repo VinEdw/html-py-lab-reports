@@ -33,10 +33,9 @@ class DataTable:
         """Set the data for the column at the identified key string."""
         if not isinstance(key, str):
             raise TypeError("Column keys must be strings.")
-        value = list(value)
         if len(value) != self._row_count:
             raise ValueError("The input data must have the same length as the other columns in the table.")
-        self._columns[key] = value
+        self._columns[key] = list(value)
         if key not in self._headers:
             self._headers.append(key)
     
