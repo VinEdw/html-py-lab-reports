@@ -65,6 +65,12 @@ class DataTable:
         """Return the number of columns in the table."""
         return len(self._headers)
     
+    def _check_rectangular(self) -> bool:
+        """Check if the data lists in each column are all of the same length. In other words, if the table is rectangular."""
+        length_pass_list = (len(val) == self._row_count for val in self._columns.values()) 
+        return all(length_pass_list)
+
+
     def keys(self):
         """Return an iterator of the headers (column keys)."""
         return iter(self._headers)
@@ -91,10 +97,6 @@ class DataTable:
         """Return a shallow copy of the table."""
         return DataTable(self.labels.copy(), **self._columns.copy())
     
-    def _check_rectangular(self) -> bool:
-        """Check if the data lists in each column are all of the same length. In other words, if the table is rectangular."""
-        length_pass_list = (len(val) == self._row_count for val in self._columns.values()) 
-        return all(length_pass_list)
     
     def get_row(self, i: int, return_dict: bool = False):
         """Get the values of table at the given row index.
