@@ -128,6 +128,8 @@ class DataTable:
         The first parameter of the callback function will be passed the current row data as a dictionary.
         The second parameter will be passed the index of the current row.
         """
+        if not callable(func):
+            raise TypeError("func should be callable in the DataTable calc() method.")
         result = []
         for i, row in enumerate(self.rows()):
             val = func(row, i)
