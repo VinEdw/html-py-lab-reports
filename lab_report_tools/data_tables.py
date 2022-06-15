@@ -118,6 +118,23 @@ class DataTable:
         self._headers.remove(name)
         self._headers.insert(i, name)
     
+    def rename_column(self, old_name: str, new_name: str):
+        """Rename the identified column to the *new_name*, if it is available. This changes the column key.
+        Keep the column in the same position and with the same label if it had one.
+        """
+        old_name = str(old_name)
+        new_name = str(new_name)
+        if old_name not in self._headers:
+            raise ValueError("*old_name* is not a valid column key.")
+        if new_name in self._headers:
+            raise ValueError("*new_name* already in use.")
+        if old_name in self.labels:
+            self.labels[new_name] = self.labels[old_name]
+            del self.labels[old_name]
+        self._columns[new_name] = self._columns[old_name]
+        del self._columns[old_name]
+        self._headers[self._headers.index(old_name)] = new_name
+
     def get_row(self, i: int, return_dict: bool = False):
         """Get the values of table at the given row index.
         By default, the row item is returned as a list.
