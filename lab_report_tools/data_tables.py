@@ -96,7 +96,7 @@ class DataTable:
         length_pass_list = (len(val) == self._row_count for val in self._columns.values()) 
         return all(length_pass_list)
     
-    def get_row(self, i, return_dict: bool = False):
+    def get_row(self, i: int, return_dict: bool = False):
         """Get the values of table at the given row index.
         By default, the row item is returned as a list.
         If *return_dict* is set to True, the row is returned in a dictionary.
