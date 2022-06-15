@@ -23,7 +23,7 @@ class DataTable:
     
     def __str__(self) -> str:
         """Return a pretty string representation of the table."""
-        line_list = [""] * (self._row_count + 1)
+        line_list = [""] * (self._row_count + 2)
         for head, col in self.items():
             label = self.labels.get(head, head)
             col.insert(0, label)
