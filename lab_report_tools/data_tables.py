@@ -61,8 +61,8 @@ class DataTable:
         return len(self._headers)
     
     def keys(self):
-        """Return a copy of the list of headers (column keys)."""
-        return self._headers.copy()
+        """Return an iterator of the headers (column keys)."""
+        return iter(self._headers)
     
     def values(self):
         """Return a copy of the data in the table."""
