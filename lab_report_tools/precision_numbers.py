@@ -88,8 +88,12 @@ class PrecisionNumber:
             return f"{rounded_value_str} ± {percent_err_str}"
         else:
             return repr(self)
-            
-        
+
+    def copy(self) -> 'PrecisionNumber':
+        """Return a copy of the number."""
+        return PrecisionNumber(self.value, sig_figs=self.sig_figs, absolute_error=self.absolute_error, default_style=self.default_style)
+
+
     @property
     def value(self) -> float:
         """Get the value of the number."""
