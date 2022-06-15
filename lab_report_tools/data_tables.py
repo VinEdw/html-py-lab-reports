@@ -196,7 +196,7 @@ class DataTable:
             func(item)
 
     @staticmethod
-    def from_csv(self, file_location, dialect = "v_custom"):
+    def from_csv(file_location, dialect = "v_custom"):
         """Create a DataTable instance from a csv file."""
         with open(file_location, "r") as file:
             csv_reader = csv.DictReader(file, dialect=dialect)
