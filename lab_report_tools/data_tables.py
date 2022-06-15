@@ -1,3 +1,7 @@
+import csv
+
+csv.register_dialect("v_custom", delimiter=",", escapechar="\\", quoting=csv.QUOTE_NONE, strict=True)
+
 class DataTable:
     """This class is used to create data tables. The structure is very much like a dictionary of equal lengnth lists.
     Additional methods allow for row-wise operations to generate a new potential column based on values in the existing columns.
@@ -151,3 +155,14 @@ class DataTable:
             self.move_column(name, index)
         if label != None:
             self.labels[name] = label
+    
+    @staticmethod
+    def from_csv(self, file_location, dialect = "v_custom"):
+        """Create a DataTable instance from a csv file."""
+        with open(file_location, "r") as file:
+            csv_reader = csv.DictReader(file, dialect=dialect)
+            result = {name:[] for name in csv_reader.fieldnames}
+            for row in csv_reader:
+                for name in csv_reader.fieldnames:
+                    result[name].append(row[name])
+        return DataTable(**result)
