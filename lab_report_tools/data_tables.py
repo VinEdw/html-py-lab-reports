@@ -1,0 +1,92 @@
+class DataTable:
+    """This class is used to create data tables. The structure is very much like a dictionary of equal lengnth lists.
+    Additional methods allow for operations to update each item in a column or generate a new column based on a row-wise operation done to the existing columns.
+    """
+    def __init__(self, labels: dict[str, str] = None, /, **columns: list) -> None:
+        if labels == None:
+            labels = {}
+        self.labels = labels.copy()
+        self._headers = []
+        self._columns = {}
+        for key, val in columns.items():
+            self._headers.append(key)
+            self._columns[key] = list(val).copy()
+        self._row_count = len(val)
+        if not self._check_rectangular():
+            raise ValueError("The data lists in each column all need to be of the same length.")
+    
+    def __getitem__(self, key: str) -> list:
+        """Get a shallow copy of the column data identified by the column key string."""
+        if not isinstance(key, str):
+            raise TypeError("Column keys must be strings.")
+        if key not in self._columns:
+            raise KeyError("Column key not found.")
+        column_data: list = self._columns[key]
+        return column_data.copy()
+    
+    def __setitem__(self, key: str, value: list):
+        """Set the data for the column at the identified key string."""
+        if not isinstance(key, str):
+            raise TypeError("Column keys must be strings.")
+        value = list(value)
+        if len(value) != self._row_count:
+            raise ValueError("The input data must have the same length as the other columns in the table.")
+        self._columns[key] = value
+        if key not in self._headers:
+            self._headers.append(key)
+    
+    def __delitem__(self, key: str):
+        """Delete the column at the given key."""
+        if not isinstance(key, str):
+            raise TypeError("Column keys must be strings.")
+        if key not in self._columns:
+            raise KeyError("Column key not found.")
+        del self._columns[key]
+        self._headers.remove(key)
+    
+    def __iter__(self):
+        """Return the headers (column keys) when the table is iterated over."""
+        return iter(self._headers)
+    
+    def __reversed__(self):
+        """Return the headers (column keys) in reverse order when called by reversed()."""
+        return reversed(self._headers)
+    
+    def __contains__(self, item) -> bool:
+        """Return whether input item is one of the headers (column keys)."""
+        return item in self._headers
+
+    def __len__(self) -> int:
+        """Return the number of columns in the table."""
+        return len(self._headers)
+    
+    def keys(self):
+        """Return a copy of the list of headers (column keys)."""
+        return self._headers.copy()
+    
+    def values(self):
+        """Return a copy of the data in the table."""
+        for key in self._headers:
+           yield self._columns[key] 
+    
+    def items(self):
+        """Return the keys and values of the columns in pairs."""
+        for key in self._headers:
+            val = self._columns[key].copy()
+            yield (key, val)
+    
+    def get(self, key, default=None, /):
+        """Get the column data at the given key. If the key is invalid, return the default."""
+        if key in self._headers:
+            return self._columns[key].copy()
+        else:
+            return default
+    
+    def copy(self) -> 'DataTable':
+        """Return a shallow copy of the table."""
+        return DataTable(self.labels.copy(), **self._columns.copy())
+    
+    def _check_rectangular(self) -> bool:
+        """Check if the data lists in each column are all of the same length. In other words, if the table is rectangular."""
+        length_pass_list = (len(val) == self._row_count for val in self._columns.values()) 
+        return all(length_pass_list)
