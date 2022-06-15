@@ -134,3 +134,20 @@ class DataTable:
             val = func(row, i)
             result.append(val)
         return result
+    
+    def create_column(self, data_or_func, name: str, *, index: int = None, label: str = None):
+        """Create a column and add it to the table. 
+        If *data_or_func* is callable, it will be passed into calc and used to generate the table. If not, it will be turend into a list to be used as column data.
+        *name* is the name to be given to the column and used as an identifying key. It should be unique in the table.
+        *index* is the position where the column will show up in the string representation of the table. If left unspecified, the column will be placed at the end of the table.
+        *label* is what will show up in the string representation of the table as the header for the column. If left unspecified, name will be used instead.
+        """
+        if callable(data_or_func):
+            data = self.calc(data_or_func)
+        else:
+            data = list(data_or_func)
+        self[name] = data
+        if index != None:
+            self.move_column(name, index)
+        if label != None:
+            self.labels[name] = label
