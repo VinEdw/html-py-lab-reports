@@ -30,6 +30,7 @@ class DataTable:
             str_list = [str(cell) for cell in col]
             max_len = max(len(item) for item in str_list)
             justified_str_list = [item.ljust(max_len + 1) for item in str_list]
+            justified_str_list.insert(1, ("-" * max_len) + " ")
             for i, item in enumerate(justified_str_list):
                 line_list[i] += "| " + item
         return str.join("|\n", line_list) + "|"
@@ -194,4 +195,4 @@ class DataTable:
             for row in csv_reader:
                 for name in csv_reader.fieldnames:
                     result[name].append(row[name])
-        return DataTable(**result)
+        return DataTable(**result)    
