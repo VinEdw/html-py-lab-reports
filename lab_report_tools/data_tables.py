@@ -14,6 +14,10 @@ class DataTable:
         self._row_count = len(val)
         if not self._check_rectangular():
             raise ValueError("The data lists in each column all need to be of the same length.")
+
+    def __repr__(self) -> str:
+        """Method to return a string representing the DataTable object instance."""
+        return f"DataTable({self.labels}, **{self._columns})"
     
     def __getitem__(self, key: str) -> list:
         """Get a shallow copy of the column data identified by the column key string."""
