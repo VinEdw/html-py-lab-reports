@@ -1,6 +1,6 @@
 class DataTable:
     """This class is used to create data tables. The structure is very much like a dictionary of equal lengnth lists.
-    Additional methods allow for operations to update each item in a column or generate a new column based on a row-wise operation done to the existing columns.
+    Additional methods allow for row-wise operations to generate a new potential column based on values in the existing columns.
     """
     def __init__(self, labels: dict[str, str] = None, /, **columns: list) -> None:
         if labels == None:
