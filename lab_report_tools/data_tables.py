@@ -96,11 +96,33 @@ class DataTable:
         length_pass_list = (len(val) == self._row_count for val in self._columns.values()) 
         return all(length_pass_list)
     
+    def get_row(self, i, return_dict: bool = False):
+        """Get the values of table at the given row index.
+        By default, the row item is returned as a list.
+        If *return_dict* is set to True, the row is returned in a dictionary.
+        """
+        if return_dict:
+            row = {name:self._columns[name][i] for name in self._headers}
+        else:
+            row = [self._columns[name][i] for name in self._headers]
+        return row
+    
     def rows(self, return_dict: bool = False):
-        """Iterate through the table by rows. By default, each row item returned as a list. If *return_dict* is set to True, the rows are returned in dictionaries."""
+        """Iterate through the table by rows.
+        By default, each row item returned as a list.
+        If *return_dict* is set to True, the rows are returned in dictionaries."""
         for i in range(self._row_count):
-            if return_dict:
-                row = {name:self._columns[name][i] for name in self._headers}
-            else:
-                row = [self._columns[name][i] for name in self._headers]
+            row = self.get_row(i, return_dict)
             yield row
+
+    def calc(self, func):
+        """Perform a row-wise operation to generate a list of data based on the existing content in the columns.
+        A function should be passed in that accepts one or two positional parameters. 
+        The first parameter of the callback function will be passed the current row data as a dictionary.
+        The second parameter will be passed the index of the current row.
+        """
+        result = []
+        for i, row in enumerate(self.rows()):
+            val = func(row, i)
+            result.append(val)
+        return result
