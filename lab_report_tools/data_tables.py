@@ -23,10 +23,16 @@ class DataTable:
     
     def __str__(self) -> str:
         """Return a pretty string representation of the table."""
-        line_list = []
+        line_list = [""] * (self._row_count + 1)
         for head, col in self.items():
             label = self.labels.get(head, head)
-            str_list = [str(cell) for cell in col.insert(0, label)]
+            col.insert(0, label)
+            str_list = [str(cell) for cell in col]
+            max_len = max(len(item) for item in str_list)
+            justified_str_list = [item.ljust(max_len + 1) for item in str_list]
+            for i, item in enumerate(justified_str_list):
+                line_list[i] += "| " + item
+        return str.join("|\n", line_list) + "|"
 
     def __getitem__(self, key: str) -> list:
         """Get a shallow copy of the column data identified by the column key string."""
