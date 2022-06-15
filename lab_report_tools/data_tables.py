@@ -67,7 +67,7 @@ class DataTable:
     def values(self):
         """Return a copy of the data in the table."""
         for key in self._headers:
-           yield self._columns[key] 
+           yield self._columns[key].copy()
     
     def items(self):
         """Return the keys and values of the columns in pairs."""
