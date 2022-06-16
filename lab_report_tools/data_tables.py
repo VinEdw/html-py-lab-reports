@@ -25,14 +25,14 @@ class DataTable:
         """Return a pretty string representation of the table."""
         line_list = [""] * (self._row_count + 2)
         for head, col in self.items():
-            label = self.labels.get(head, head)
-            col.insert(0, label)
+            label = str(self.labels.get(head, head))
             str_list = [str(cell) for cell in col]
-            max_len = max(len(item) for item in str_list)
-            justified_str_list = [item.ljust(max_len + 1) for item in str_list]
-            justified_str_list.insert(1, ("-" * max_len) + " ")
+            max_len = max(len(label), *(len(item) for item in str_list))
+            justified_str_list = [item.rjust(max_len) for item in str_list]
+            justified_str_list.insert(0, ("-" * max_len))
+            justified_str_list.insert(0, label.ljust(max_len))
             for i, item in enumerate(justified_str_list):
-                line_list[i] += "| " + item
+                line_list[i] += f"| {item} "
         return str.join("|\n", line_list) + "|"
 
     def __getitem__(self, key: str) -> list:
