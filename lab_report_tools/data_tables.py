@@ -1,7 +1,5 @@
 import csv
 
-csv.register_dialect("v_custom", delimiter=",", escapechar="\\", quoting=csv.QUOTE_NONE, strict=True)
-
 class DataTable:
     """This class is used to create data tables. The structure is very much like a dictionary of equal lengnth lists.
     Additional methods allow for row-wise operations to generate a new potential column based on values in the existing columns.
@@ -213,10 +211,10 @@ class DataTable:
         return self._row_count
 
     @staticmethod
-    def from_csv(file_location, dialect = "v_custom"):
+    def from_csv(file_location):
         """Create a DataTable instance from a csv file."""
         with open(file_location, "r") as file:
-            csv_reader = csv.DictReader(file, dialect=dialect)
+            csv_reader = csv.DictReader(file)
             result = {name:[] for name in csv_reader.fieldnames}
             for row in csv_reader:
                 for name in csv_reader.fieldnames:
