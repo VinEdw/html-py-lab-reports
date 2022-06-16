@@ -30,7 +30,7 @@ class PrecisionNumber:
         self.default_style = default_style
 
         if sig_figs == None and decimal_place == None:
-            self.sig_figs = self.count_sig_figs(str(value_str))
+            self.sig_figs = self.get_sig_figs(str(value_str))
         elif sig_figs != None and decimal_place == None:
             if not isinstance(sig_figs, int):
                 raise TypeError("*sig_figs* argument should be an int")
@@ -288,7 +288,7 @@ class PrecisionNumber:
         value_str = value_str.replace("-", "")
         if "E" in value_str:
             num_part = value_str.split("E")[0]
-            return PrecisionNumber.count_sig_figs(num_part)
+            return PrecisionNumber.get_sig_figs(num_part)
         if "." in value_str:
             sf_count = 0
             pre_decimal_point, post_decimal_point = value_str.split(".")
@@ -309,7 +309,7 @@ class PrecisionNumber:
         """
         value = float(value_str)
         leading_place_value = get_leading_place_value(value)
-        sf_count = PrecisionNumber.count_sig_figs(value_str)
+        sf_count = PrecisionNumber.get_sig_figs(value_str)
         return 1 + leading_place_value - sf_count
     
     @staticmethod
@@ -330,54 +330,54 @@ if __name__ == "__main__":
     import unittest
 
     class TestSigFigCounter(unittest.TestCase):
-        """Test if PrecisionNumber.count_sig_figs() works properly and return the correct number of significant figures."""
+        """Test if PrecisionNumber.get_sig_figs() works properly and return the correct number of significant figures."""
         
         def test_no_decmial_point(self):
             """Test numbers that do not contain a decimal point."""
-            self.assertEqual(PrecisionNumber.count_sig_figs("120"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("205"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("36700"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("21"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("9"), 1)
-            self.assertEqual(PrecisionNumber.count_sig_figs("1000"), 1)
+            self.assertEqual(PrecisionNumber.get_sig_figs("120"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("205"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("36700"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("21"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("9"), 1)
+            self.assertEqual(PrecisionNumber.get_sig_figs("1000"), 1)
 
         def test_with_decimal_point(self):
             """Test numbers that do contain a decimal point."""
-            self.assertEqual(PrecisionNumber.count_sig_figs("2.05"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("61.09"), 4)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0.500"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("3.000"), 4)
-            self.assertEqual(PrecisionNumber.count_sig_figs("80.0000"), 6)
-            self.assertEqual(PrecisionNumber.count_sig_figs("70."), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0.0025"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs(".000108"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0.00040600"), 5)
+            self.assertEqual(PrecisionNumber.get_sig_figs("2.05"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("61.09"), 4)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0.500"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("3.000"), 4)
+            self.assertEqual(PrecisionNumber.get_sig_figs("80.0000"), 6)
+            self.assertEqual(PrecisionNumber.get_sig_figs("70."), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0.0025"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs(".000108"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0.00040600"), 5)
 
         def test_with_scientific_notation(self):
             """Test numbers that are written in scientific notation (or at least contain an E)."""
-            self.assertEqual(PrecisionNumber.count_sig_figs("1.25E+09"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("2.846E-20"), 4)
-            self.assertEqual(PrecisionNumber.count_sig_figs("1.002E8"), 4)
-            self.assertEqual(PrecisionNumber.count_sig_figs("8.4e2"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("71.8E-3"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("1257E0"), 4)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0.093e+14"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0.2E2"), 1)
+            self.assertEqual(PrecisionNumber.get_sig_figs("1.25E+09"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("2.846E-20"), 4)
+            self.assertEqual(PrecisionNumber.get_sig_figs("1.002E8"), 4)
+            self.assertEqual(PrecisionNumber.get_sig_figs("8.4e2"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("71.8E-3"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("1257E0"), 4)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0.093e+14"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0.2E2"), 1)
 
         def test_leading_signs(self):
             """Test numbers that contain signs (+ or -) at the start."""
-            self.assertEqual(PrecisionNumber.count_sig_figs("+346"), 3)
-            self.assertEqual(PrecisionNumber.count_sig_figs("-00017"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("-9.180"), 4)
-            self.assertEqual(PrecisionNumber.count_sig_figs("+00028000"), 2)
-            self.assertEqual(PrecisionNumber.count_sig_figs("-0.028000"), 5)
-            self.assertEqual(PrecisionNumber.count_sig_figs("+1.42E-08"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("+346"), 3)
+            self.assertEqual(PrecisionNumber.get_sig_figs("-00017"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("-9.180"), 4)
+            self.assertEqual(PrecisionNumber.get_sig_figs("+00028000"), 2)
+            self.assertEqual(PrecisionNumber.get_sig_figs("-0.028000"), 5)
+            self.assertEqual(PrecisionNumber.get_sig_figs("+1.42E-08"), 3)
 
         def test_leading_zeros(self):
             """Test numbers that contain leading zeros."""
-            self.assertEqual(PrecisionNumber.count_sig_figs("000012000.0"), 6)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0000000100000"), 1)
-            self.assertEqual(PrecisionNumber.count_sig_figs("0000.0012070"), 5)
+            self.assertEqual(PrecisionNumber.get_sig_figs("000012000.0"), 6)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0000000100000"), 1)
+            self.assertEqual(PrecisionNumber.get_sig_figs("0000.0012070"), 5)
 
     class TestOperations(unittest.TestCase):
         """Test if the operations with PrecisionNumber objects work properly."""
