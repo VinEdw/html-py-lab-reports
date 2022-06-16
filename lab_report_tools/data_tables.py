@@ -187,6 +187,18 @@ class DataTable:
             row = self.get_row(i, use_dict)
             yield row
 
+    def add_row(self, data: list, i: int = None):
+        """Add the row of data to the table. The data must have the same length as the number of columns in the table.
+        *i* is the index to insert the row. If unspecified, it defaults to the last row of the table.
+        """
+        if len(data) != len(self._headers):
+            raise ValueError("Data length must match the number of columns in the table.")
+        if i == None:
+            i = self._row_count
+        for j, col in enumerate(self._headers):
+            self._columns[col].insert(i, data[j])
+        self._row_count += 1
+
     @staticmethod
     def from_csv(file_location, dialect = "v_custom"):
         """Create a DataTable instance from a csv file."""
