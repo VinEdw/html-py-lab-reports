@@ -199,6 +199,11 @@ class DataTable:
             self._columns[col].insert(i, data[j])
         self._row_count += 1
 
+    @property
+    def row_count(self):
+        """Get the number of rows in the table. A read-only property."""
+        return self._row_count
+
     @staticmethod
     def from_csv(file_location, dialect = "v_custom"):
         """Create a DataTable instance from a csv file."""
