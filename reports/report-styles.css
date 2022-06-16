@@ -1,0 +1,16 @@
+.title-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+  break-after: always;
+}
+
+.title-page p {
+  text-indent: 0;
+}
+
+section p {
+  text-indent: 2em;
+}
