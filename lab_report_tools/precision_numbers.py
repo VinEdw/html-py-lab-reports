@@ -279,7 +279,7 @@ class PrecisionNumber:
 
 
     @staticmethod
-    def count_sig_figs(value_str: str) -> int:
+    def get_sig_figs(value_str: str) -> int:
         """Count the number of significant figures (sig figs) in the input number string."""
         value = float(value_str)
         value_str = value_str.strip().upper()
