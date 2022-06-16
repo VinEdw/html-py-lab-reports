@@ -136,38 +136,6 @@ class DataTable:
         del self._columns[old_name]
         self._headers[self._headers.index(old_name)] = new_name
 
-    def get_row(self, i: int, return_dict: bool = False):
-        """Get the values of table at the given row index.
-        By default, the row item is returned as a list.
-        If *return_dict* is set to True, the row is returned in a dictionary.
-        """
-        if return_dict:
-            row = {name:self._columns[name][i] for name in self._headers}
-        else:
-            row = [self._columns[name][i] for name in self._headers]
-        return row
-    
-    def rows(self, return_dict: bool = False):
-        """Iterate through the table by rows.
-        By default, each row item returned as a list.
-        If *return_dict* is set to True, the rows are returned in dictionaries."""
-        for i in range(self._row_count):
-            row = self.get_row(i, return_dict)
-            yield row
-
-    def calc(self, func, use_dict: bool = True):
-        """Perform a row-wise operation to generate a list of data based on the existing content in the columns.
-        A function should be passed in that accepts one or two positional parameters. 
-        The callback function will be passed the current row data as a dictionary by default, and a list if *use_dict* is set to False.
-        """
-        if not callable(func):
-            raise TypeError("func should be callable in the DataTable calc() method.")
-        result = []
-        for row in self.rows(return_dict=use_dict):
-            val = func(row)
-            result.append(val)
-        return result
-    
     def create_column(self, data_or_func, name: str, *, index: int = None, label: str = None, use_dict: bool = True):
         """Create a column and add it to the table. 
         If *data_or_func* is callable, it will be passed into calc and used to generate the table. If not, it will be turend into a list to be used as column data.
@@ -186,6 +154,38 @@ class DataTable:
         if label != None:
             self.labels[name] = label
     
+    def calc(self, func, use_dict: bool = True):
+        """Perform a row-wise operation to generate a list of data based on the existing content in the columns.
+        A function should be passed in that accepts one or two positional parameters. 
+        The callback function will be passed the current row data as a dictionary by default, and a list if *use_dict* is set to False.
+        """
+        if not callable(func):
+            raise TypeError("func should be callable in the DataTable calc() method.")
+        result = []
+        for row in self.rows(use_dict=use_dict):
+            val = func(row)
+            result.append(val)
+        return result
+
+
+    def get_row(self, i: int, use_dict: bool = True):
+        """Get the values of table at the given row index.
+        By default, the row item is returned as a list.
+        If *use_dict* is set to True, the row is returned in a dictionary.
+        """
+        if use_dict:
+            row = {name:self._columns[name][i] for name in self._headers}
+        else:
+            row = [self._columns[name][i] for name in self._headers]
+        return row
+    
+    def rows(self, use_dict: bool = True):
+        """Iterate through the table by rows.
+        By default, each row item returned as a list.
+        If *use_dict* is set to True, the rows are returned in dictionaries."""
+        for i in range(self._row_count):
+            row = self.get_row(i, use_dict)
+            yield row
 
     @staticmethod
     def from_csv(file_location, dialect = "v_custom"):
