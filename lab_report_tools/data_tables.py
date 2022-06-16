@@ -199,6 +199,14 @@ class DataTable:
             self._columns[col].insert(i, data[j])
         self._row_count += 1
 
+    def delete_row(self, i: int) -> list:
+        """Delete the identified row in the table. The deleted data is returned in a list."""
+        data = self.get_row(i, False)
+        for col in self._headers:
+            del self._columns[col][i]
+        self._row_count -= 1
+        return data
+
     @property
     def row_count(self):
         """Get the number of rows in the table. A read-only property."""
