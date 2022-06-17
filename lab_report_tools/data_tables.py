@@ -10,7 +10,10 @@ class DataTable:
         self.labels = labels.copy()
         self._headers = [key for key in columns.keys()]
         self._columns = {key: list(val).copy() for key, val in columns.items()}
-        self._row_count = len(columns[self._headers[0]])
+        if len(self._headers) == 0:
+            self._row_count = 0
+        else:
+            self._row_count = len(columns[self._headers[0]])
         if not self._check_rectangular():
             raise ValueError("The data lists in each column all need to be of the same length.")
 
@@ -46,9 +49,12 @@ class DataTable:
         """Set the data for the column at the identified key string."""
         if not isinstance(key, str):
             raise TypeError("Column keys must be strings.")
-        if len(value) != self._row_count:
+        value = list(value)
+        if self._row_count == 0:
+            self._row_count = len(value)
+        elif len(value) != self._row_count:
             raise ValueError("The input data must have the same length as the other columns in the table.")
-        self._columns[key] = list(value)
+        self._columns[key] = value
         if key not in self._headers:
             self._headers.append(key)
     
@@ -62,6 +68,8 @@ class DataTable:
         self._headers.remove(key)
         if key in self.labels:
             del self.labels[key]
+        if len(self._headers) == 0:
+            self._row_count = 0
     
     def __iter__(self):
         """Return the headers (column keys) when the table is iterated over."""
