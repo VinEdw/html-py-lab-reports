@@ -186,16 +186,23 @@ class DataTable:
             row = self.get_row(i, use_dict)
             yield row
 
-    def add_row(self, data: list, i: int = None):
+    def add_row(self, data: list, i: int = None, use_dict: bool = True):
         """Add the row of data to the table. The data must have the same length as the number of columns in the table.
         *i* is the index to insert the row. If unspecified, it defaults to the last row of the table.
+        If *use_dict* is set to True, the rows are returned in dictionaries.
         """
         if len(data) != len(self._headers):
             raise ValueError("Data length must match the number of columns in the table.")
         if i == None:
             i = self._row_count
+        if use_dict:
+            data_list = []
+            for col in self._headers:
+                data_list.append(data[col])
+        else:
+            data_list = data
         for j, col in enumerate(self._headers):
-            self._columns[col].insert(i, data[j])
+            self._columns[col].insert(i, data_list[j])
         self._row_count += 1
 
     def delete_row(self, i: int) -> list:
