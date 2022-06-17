@@ -34,3 +34,7 @@ for col in density_table_w_error:
 print(density_table)
 print()
 print(density_table_w_error)
+
+# Write the data tables to the report.md document
+file_editor.write_between_tags(str(density_table), "density-table-1", "div", "report.md")
+file_editor.write_between_tags(str(density_table_w_error), "density-table-2", "div", "report.md")
