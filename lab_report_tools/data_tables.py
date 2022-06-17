@@ -180,7 +180,8 @@ class DataTable:
     def rows(self, use_dict: bool = True):
         """Iterate through the table by rows.
         By default, each row item returned as a list.
-        If *use_dict* is set to True, the rows are returned in dictionaries."""
+        If *use_dict* is set to True, the rows are returned in dictionaries.
+        """
         for i in range(self._row_count):
             row = self.get_row(i, use_dict)
             yield row
