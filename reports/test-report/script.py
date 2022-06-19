@@ -2,6 +2,8 @@ import sys
 sys.path.append("..\\..")
 
 from lab_report_tools import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Read the data from the csv and turn it into a DataTable
 density_table = DataTable.from_csv("raw-data/mass-volume-data.csv") 
@@ -34,7 +36,19 @@ for col in density_table_w_error:
 print(density_table)
 print()
 print(density_table_w_error)
+print()
 
 # Write the data tables to the report.md document
 file_editor.write_between_tags(str(density_table), "density-table-1", "div", "report.md")
 file_editor.write_between_tags(str(density_table_w_error), "density-table-2", "div", "report.md")
+
+# ================================================== #
+
+concentration_absorbance_table = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
+print(concentration_absorbance_table)
+c_a_fig, c_a_ax = plt.subplots(1, 1)
+c_a_ax.scatter(concentration_absorbance_table["Concentration (M)"], concentration_absorbance_table["Absorbance (A)"])
+c_a_ax.set_title("Absorbance vs. Concentration")
+c_a_ax.set_xlabel("Concentration (M)")
+c_a_ax.set_ylabel("Absorbance (A)")
+c_a_fig.show()
