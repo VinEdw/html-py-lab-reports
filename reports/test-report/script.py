@@ -44,11 +44,16 @@ file_editor.write_between_tags(str(density_table_w_error), "density-table-2", "d
 
 # ================================================== #
 
+# Open the concentration & absorbance data
 concentration_absorbance_table = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
 print(concentration_absorbance_table)
+# Plot the Absorbance vs. Concentration in a scatter plot
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1)
 c_a_ax.scatter(concentration_absorbance_table["Concentration (M)"], concentration_absorbance_table["Absorbance (A)"])
 c_a_ax.set_title("Absorbance vs. Concentration")
+# Customize the x-axis
 c_a_ax.set_xlabel("Concentration (M)")
+# Customize the y-axis
 c_a_ax.set_ylabel("Absorbance (A)")
-c_a_fig.show()
+# Save the figure as a png
+c_a_fig.savefig("media/absorbance-concentration-graph.png")
