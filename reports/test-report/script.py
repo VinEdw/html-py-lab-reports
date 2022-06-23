@@ -51,6 +51,7 @@ print(concentration_absorbance_table)
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1)
 c_a_ax.plot(concentration_absorbance_table["Concentration (M)"], concentration_absorbance_table["Absorbance (A)"], "bo")
 c_a_ax.set_title("Absorbance vs. Concentration")
+c_a_ax.grid(True)
 # Customize the x-axis
 c_a_ax.set_xlabel("Concentration (M)")
 # Customize the y-axis
