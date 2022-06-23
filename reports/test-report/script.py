@@ -49,7 +49,7 @@ concentration_absorbance_table = DataTable.from_csv("raw-data/concentration-abso
 print(concentration_absorbance_table)
 # Plot the Absorbance vs. Concentration in a scatter plot
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1)
-c_a_ax.scatter(concentration_absorbance_table["Concentration (M)"], concentration_absorbance_table["Absorbance (A)"])
+c_a_ax.plot(concentration_absorbance_table["Concentration (M)"], concentration_absorbance_table["Absorbance (A)"], "bo")
 c_a_ax.set_title("Absorbance vs. Concentration")
 # Customize the x-axis
 c_a_ax.set_xlabel("Concentration (M)")
