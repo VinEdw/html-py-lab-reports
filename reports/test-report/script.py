@@ -69,13 +69,15 @@ c_a_ax.text(0.03, 1.2, f"$y={slope:.4f}\\ x + {y_int:.3f}$\n$R^2={R_squared:.4f}
 c_a_ax.set_xlabel("Concentration (M)")
 c_a_ax.set_xlim(0, 0.5)
 x_ticks = np.arange(0, 0.51, 0.1)
-c_a_ax.set_xticks(x_ticks, [f"{val:.3f}" for val in x_ticks])
+c_a_ax.set_xticks(x_ticks)
+c_a_ax.xaxis.set_major_formatter("{x:.3f}") # x for tick value, and pos for tick position; can also use a lambda function with those variables
 c_a_ax.xaxis.set_minor_locator(mpl.ticker.AutoMinorLocator(5))
 # Customize the y-axis
 c_a_ax.set_ylabel("Absorbance (A)")
 c_a_ax.set_ylim(0, 1.5)
 y_ticks = np.arange(0, 1.51, 0.5)
-c_a_ax.set_yticks(y_ticks, [f"{val:.3f}" for val in y_ticks])
+c_a_ax.set_yticks(y_ticks)
+c_a_ax.yaxis.set_major_formatter("{x:.3f}")
 c_a_ax.yaxis.set_minor_locator(mpl.ticker.AutoMinorLocator(5))
 # Save the figure as a png
 c_a_fig.savefig("media/absorbance-concentration-graph.png")
