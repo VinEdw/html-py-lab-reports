@@ -43,3 +43,5 @@ The goal of this whole project is to be able to create a lab report using python
 | 3.2518 ± 0.0001 | 10.29 ± 0.01 | 0.3160 ± 0.0003 |
 
 </div>
+
+![absorbance versus concentration graph](media/absorbance-concentration-graph.png)
