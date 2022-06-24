@@ -55,6 +55,14 @@ c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1, figsize=(8, 4))
 c_a_ax.plot(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], "bo")
 c_a_ax.set_title("Absorbance vs. Concentration")
 c_a_ax.grid(True)
+# Find and plot the line of best fit
+y_int, slope = np.polynomial.polynomial.polyfit(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], 1)
+y_avg = sum(c_a_tb["Absorbance (A)"])/len(c_a_tb["Absorbance (A)"])
+R_squared = 1 - sum(((slope * x + y_int) - y)**2 for x, y in zip(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"])) / sum((y - y_avg)**2 for y in c_a_tb["Absorbance (A)"])
+line_x_vals = np.array([0, 0.5])
+line_y_vals = slope * line_x_vals + y_int
+c_a_ax.plot(line_x_vals, line_y_vals, "r")
+c_a_ax.text(0.03, 1.2, f"$y={slope:.4f}\\ x + {y_int:.3f}$\n$R^2={R_squared:.4f}$", backgroundcolor="lightgray", color="blue")
 # Customize the x-axis
 c_a_ax.set_xlabel("Concentration (M)")
 c_a_ax.set_xlim(0, 0.5)
