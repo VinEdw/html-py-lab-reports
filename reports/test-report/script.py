@@ -45,14 +45,14 @@ file_editor.write_between_tags(str(density_table_w_error), "density-table-2", "d
 # ================================================== #
 
 # Open the concentration & absorbance data
-concentration_absorbance_table = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
+c_a_tb = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
 # Convert the numbers from str to float
-for col in concentration_absorbance_table:
-    concentration_absorbance_table[col] = [float(val) for val in concentration_absorbance_table[col]]
-print(concentration_absorbance_table)
+for col in c_a_tb:
+    c_a_tb[col] = [float(val) for val in c_a_tb[col]]
+print(c_a_tb)
 # Plot the Absorbance vs. Concentration in a scatter plot
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1, figsize=(8, 4))
-c_a_ax.plot(concentration_absorbance_table["Concentration (M)"], concentration_absorbance_table["Absorbance (A)"], "bo")
+c_a_ax.plot(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], "bo")
 c_a_ax.set_title("Absorbance vs. Concentration")
 c_a_ax.grid(True)
 # Customize the x-axis
