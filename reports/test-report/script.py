@@ -57,7 +57,13 @@ c_a_ax.set_title("Absorbance vs. Concentration")
 c_a_ax.grid(True)
 # Customize the x-axis
 c_a_ax.set_xlabel("Concentration (M)")
+c_a_ax.set_xlim(0, 0.5)
+x_ticks = np.arange(0, 0.51, 0.1)
+c_a_ax.set_xticks(x_ticks, [f"{val:.3f}" for val in x_ticks])
 # Customize the y-axis
 c_a_ax.set_ylabel("Absorbance (A)")
+c_a_ax.set_ylim(0, 1.5)
+y_ticks = np.arange(0, 1.51, 0.5)
+c_a_ax.set_yticks(y_ticks, [f"{val:.3f}" for val in y_ticks])
 # Save the figure as a png
 c_a_fig.savefig("media/absorbance-concentration-graph.png")
