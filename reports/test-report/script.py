@@ -46,6 +46,9 @@ file_editor.write_between_tags(str(density_table_w_error), "density-table-2", "d
 
 # Open the concentration & absorbance data
 concentration_absorbance_table = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
+# Convert the numbers from str to float
+for col in concentration_absorbance_table:
+    concentration_absorbance_table[col] = [float(val) for val in concentration_absorbance_table[col]]
 print(concentration_absorbance_table)
 # Plot the Absorbance vs. Concentration in a scatter plot
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1)
