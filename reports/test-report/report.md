@@ -17,8 +17,11 @@ MM-DD-YYYY
 ## Abstract
 
 The goal of this whole project is to be able to create a lab report using python and markdown.
+Though, it should be noted that extended markdown syntax, along with HTML+CSS, is required for some of the more complex arrangements.
 
 </section>
+
+<section id="tables">
 
 <div id="density-table-1">
 
@@ -43,5 +46,6 @@ The goal of this whole project is to be able to create a lab report using python
 | 3.2518 ± 0.0001 | 10.29 ± 0.01 | 0.3160 ± 0.0003 |
 
 </div>
+</section>
 
 ![absorbance versus concentration graph](media/absorbance-concentration-graph.png)
