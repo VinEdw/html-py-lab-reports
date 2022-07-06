@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 1ch;
-  break-after: always;
+  break-after: page;
 }
 
 .title-page p {
