@@ -7,10 +7,6 @@
   break-after: page;
 }
 
-.title-page p {
-  text-indent: 0;
-}
-
-section p {
+.indent {
   text-indent: 2em;
 }
