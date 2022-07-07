@@ -221,6 +221,47 @@ class DataTable:
         self._row_count -= 1
         return data
 
+    def get_html(self, *, id = None, right_header_columns: int = 0) -> str:
+        """
+        Generate a string with the HTML representation of the table.
+        *id*, if specified, will be set as the id for the table element.
+        *right_header_columns* specifies how many columns on the right will be set to table headers.
+        """
+        def html_escape(text: str) -> str:
+            """Replace <, >, &, and " with the corresponding HTML entities"""
+            text = text.replace("&", "&amp;")
+            text = text.replace("<", "&lt;")
+            text = text.replace(">", "&gt;")
+            text = text.replace('"', "&quot;")
+            return text
+
+        table_html = ""
+        indent = "  "
+        # Start the <table> with the id
+        if id == None:
+            table_html += "<table>\n"
+        else:
+            table_html += f'<table id="{id}">\n'
+        # Add the <thead>
+        table_html += f"{indent}<thead>\n{indent*2}<tr>\n"
+        for head in self.keys():
+            label = html_escape(str(self.labels.get(head, head)))
+            table_html += f"{indent*3}<th>{label}</th>\n"
+        table_html += f"{indent*2}</tr>\n{indent}</thead>\n"
+        # Add the <tbody>
+        table_html += f"{indent}<tbody>\n"
+        for row in self.rows(use_dict=False):
+            table_html += f"{indent*2}<tr>\n"
+            for i, data in enumerate(row):
+                data = html_escape(str(data))
+                cell_type = "th" if i < right_header_columns else "td"
+                table_html += f"{indent*3}<{cell_type}>{data}</{cell_type}>\n"
+            table_html += f"{indent*2}</tr>\n"
+        table_html += f"{indent}</tbody>\n"
+        # Close the <table>
+        table_html += "</table>"
+        return table_html
+
     @property
     def row_count(self):
         """Get the number of rows in the table. A read-only property."""
