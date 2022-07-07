@@ -1,5 +1,3 @@
-import re
-
 def write_between_markers(html_str: str, mark_name: str, file_name: str) -> bool:
     """
     In the html text file identified with the input name, write the *html_str* between the "markers".
