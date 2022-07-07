@@ -221,11 +221,12 @@ class DataTable:
         self._row_count -= 1
         return data
 
-    def get_html(self, *, id = None, right_header_columns: int = 0) -> str:
+    def get_html(self, *, id = None, right_header_columns: int = 0, caption: str = None) -> str:
         """
         Generate a string with the HTML representation of the table.
         *id*, if specified, will be set as the id for the table element.
         *right_header_columns* specifies how many columns on the right will be set to table headers.
+        *caption*, if specified, will add the caption to the table with the input content.
         """
         def html_escape(text: str) -> str:
             """Replace <, >, &, and " with the corresponding HTML entities"""
@@ -242,6 +243,9 @@ class DataTable:
             table_html += "<table>\n"
         else:
             table_html += f'<table id="{id}">\n'
+        # Add the <caption>
+        if caption != None:
+            table_html += f"{indent}<caption>{html_escape(str(caption))}</caption>\n"
         # Add the <thead>
         table_html += f"{indent}<thead>\n{indent*2}<tr>\n"
         for head in self.keys():
