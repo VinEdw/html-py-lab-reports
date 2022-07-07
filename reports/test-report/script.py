@@ -40,8 +40,8 @@ print(density_table_w_error)
 print()
 
 # Write the data tables to the report.md document
-file_editor.write_between_tags(str(density_table), "density-table-1", "div", "report.md")
-file_editor.write_between_tags(str(density_table_w_error), "density-table-2", "div", "report.md")
+file_editor.write_between_markers(density_table.get_html(), "density-table-1", "report.html")
+file_editor.write_between_markers(density_table_w_error.get_html(), "density-table-2", "report.html")
 
 # ================================================== #
 
