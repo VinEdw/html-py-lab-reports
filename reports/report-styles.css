@@ -1,9 +1,5 @@
 .title-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1ch;
+  text-align: center;
   break-after: page;
 }
 
