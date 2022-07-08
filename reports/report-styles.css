@@ -6,3 +6,9 @@
 .indent {
   text-indent: 2em;
 }
+
+@page {
+  @top-right {
+    content: "Edwards " counter(page);
+  }
+}
