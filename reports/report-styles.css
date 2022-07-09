@@ -12,3 +12,9 @@
     content: "Edwards " counter(page);
   }
 }
+
+@page :first {
+  @top-right {
+    content: none;
+  }
+}
