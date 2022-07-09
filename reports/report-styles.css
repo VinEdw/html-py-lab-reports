@@ -25,4 +25,6 @@ h2 {
 
 figure {
   break-inside: avoid;
+  margin: 0;
+}
 }
