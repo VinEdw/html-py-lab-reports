@@ -14,16 +14,24 @@
     crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
     integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous" ></script>
+  <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      renderMathInElement(document.body, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true},
-          { left: '$', right: '$', display: false },
-        ],
-        throwOnError: false,
-      });
-    })
+    class katexHandler extends Paged.Handler {
+      constructor(chunker, polisher, caller) {
+        super(chunker, polisher, caller);
+      }
+      
+      beforeParsed(content) {
+        renderMathInElement(content, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+          throwOnError: false,
+        });
+      }
+    }
+    Paged.registerHandlers(katexHandler);
   </script>
 </head>
 
