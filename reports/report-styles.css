@@ -1,3 +1,7 @@
+body {
+  counter-reset: fig-count;
+}
+
 .title-page {
   text-align: center;
   break-after: page;
@@ -26,6 +30,12 @@ h2 {
 figure {
   break-inside: avoid;
   margin: 0;
+  counter-increment: fig-count;
+}
+
+figcaption::before {
+  content: "Figure " counter(fig-count) ": ";
+  font-weight: bold;
 }
 
 img {
