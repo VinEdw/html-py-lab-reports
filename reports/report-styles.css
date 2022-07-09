@@ -18,3 +18,7 @@
     content: none;
   }
 }
+
+h2 {
+  break-after: avoid;
+}
