@@ -78,4 +78,5 @@ c_a_ax.yaxis.set_major_locator(mpl.ticker.MultipleLocator(0.5))
 c_a_ax.yaxis.set_major_formatter("{x:.3f}")
 c_a_ax.yaxis.set_minor_locator(mpl.ticker.AutoMinorLocator(5))
 # Save the figure as a png
+c_a_fig.tight_layout()
 c_a_fig.savefig("media/absorbance-concentration-graph.png")
