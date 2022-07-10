@@ -2,17 +2,17 @@ def write_between_markers(html_str: str, mark_name: str, file_name: str) -> bool
     """
     In the html text file identified with the input name, write the *html_str* between the "markers".
     The markers look like the following:
-    <!-- start mark_name -->
+    <!-- #region mark_name -->
     ...
-    <!-- end mark_name -->
+    <!-- #endregion mark_name -->
     They should be on separate lines, can have arbitrary content in between, and can have whitespace indentation at the start.
     That indentation will be used when inserting the *html_str*.
     The intent is to make it only match, and thereby impact, a very limited portion of the document.
     The function return True if the replacement succeeds, and False if the markers cannot be found or are not closed.
     The replacement was not made if False is returned.
     """
-    start_marker = f"<!-- start {mark_name} -->"
-    end_marker = f"<!-- end {mark_name} -->"
+    start_marker = f"<!-- #region {mark_name} -->"
+    end_marker = f"<!-- #endregion {mark_name} -->"
     inside_markers = False
     split_html_str = html_str.split("\n")
     new_full_html = ""
