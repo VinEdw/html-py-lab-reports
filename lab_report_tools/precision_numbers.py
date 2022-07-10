@@ -197,6 +197,12 @@ class PrecisionNumber:
     def __abs__(self) -> 'PrecisionNumber':
         """The absolute value of a number just that number with its value made positive."""
         return PrecisionNumber(abs(self.value), sig_figs=self.sig_figs, absolute_error=self.absolute_error)
+    
+    def __float__(self) -> float:
+        return float(self.value)
+    
+    def __int__(self) -> int:
+        return int(self.value)
 
 
     def __add__(self, other: 'PrecisionNumber|float|int', /) -> 'PrecisionNumber':
