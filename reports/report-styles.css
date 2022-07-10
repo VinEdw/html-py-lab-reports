@@ -1,5 +1,5 @@
 body {
-  counter-reset: fig-count;
+  counter-reset: figure-count;
 }
 
 .title-page {
@@ -27,14 +27,15 @@ h2 {
   break-after: avoid;
 }
 
+/* #region figure and image styles */
 figure {
   break-inside: avoid;
   margin: 0;
-  counter-increment: fig-count;
+  counter-increment: figure-count;
 }
 
 figcaption::before {
-  content: "Figure " counter(fig-count) ": ";
+  content: "Figure " counter(figure-count) ": ";
   font-weight: bold;
 }
 
@@ -43,3 +44,4 @@ img {
   height: 100%;
   object-fit: contain;
 }
+/* #endregion */
