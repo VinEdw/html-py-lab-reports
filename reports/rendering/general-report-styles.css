@@ -51,6 +51,7 @@ img {
 table {
   border-collapse: collapse;
   counter-increment: table-count;
+  break-inside: avoid;
 }
 
 tbody tr:nth-child(odd) {
