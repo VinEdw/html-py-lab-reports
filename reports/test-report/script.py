@@ -39,7 +39,7 @@ print()
 print(density_table_w_error)
 print()
 
-# Write the data tables to the report.md document
+# Write the data tables to the report.html document
 file_editor.write_between_markers(density_table.get_html(caption="Density Table (regular)"), "density-table-1", "report.html")
 file_editor.write_between_markers(density_table_w_error.get_html(caption="Density Table (absolute error)"), "density-table-2", "report.html")
 
