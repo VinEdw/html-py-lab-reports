@@ -46,10 +46,24 @@
     <section id="abstract">
       <h2>Abstract</h2>
       <p class="indent">
-        The goal of this whole project is to be able to create a lab report using python and HTML+CSS.
-        The original goal was to use markdown, but the lack of functionality was limiting.
+        The goal of this whole project is to be able to create a lab report using Python and HTML+CSS+JS.
+        HTML would handle the structuring of the content, with most sentences being manually written to the file.
+        CSS would handle most of the styling of the document.
+        JS would be used to handle more complex styling.
+        In particular, <a href="https://katex.org/">$\KaTeX$</a> is used for rendering inline equations (between <code>$</code>) and block equations (between <code>$$</code>).
+        In addition, <a href="https://pagedjs.org/">paged.js</a> is used for translating the Paged Media standards, published by the W3C, into a form that is more widely supported.
+        Python handles the programmatic generation of content, such as HTML data tables and graph images.
+        Some modules used include <a href="https://matplotlib.org/">Matplotlib</a> for graphing,
+          a custom module for creating numbers that have an associated amount uncertainty/error and number of significant figures,
+          and a custom module for creating data table structures that readily support column-wise operations.
+      </p>
+      <p class="indent">
+        The original goal was to use Markdown over HTML, but the lack of functionality in its syntax was limiting.
         For many kinds of complex structure or formatting, HTML+CSS would have to be resorted to anyways.
-        Mixing HTML tags with markdown tags also felt very messy and hard to organize.
+        Mixing HTML tags with Markdown syntax in such a way felt very messy and hard to organize.
+        It made me want to avoid inserting <code>&lt;script&gt;</code> tags or apply classes to elements.
+        Using HTML makes such actions feel more natural.
+        In addition, using HTML at the outset removes the dependance on a Markdown renderer and its particular nuances.
       </p>
       <p class="indent">
         In addition, using HTML at the outset removes the dependance on a markdown renderer and its particular nuances.
