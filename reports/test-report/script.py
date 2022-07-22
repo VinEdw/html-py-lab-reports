@@ -3,8 +3,6 @@ sys.path.append("..\\..")
 
 from lab_report_tools import *
 import matplotlib.pyplot as plt
-import matplotlib as mpl
-import numpy as np
 
 # Read the data from the csv and turn it into a DataTable
 density_table = DataTable.from_csv("raw-data/mass-volume-data.csv") 
@@ -57,26 +55,13 @@ c_a_ax.plot(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], "bo")
 c_a_ax.set_title("Absorbance vs. Concentration")
 c_a_ax.grid(True, which="minor") # default linewidth is 0.8 (I think)
 c_a_ax.grid(True, which="major", linewidth=1.5)
+# Customize the x-axis and y-axis
+graphing.style_axis(c_a_ax, "x", 0, 0.5, label="Concentration (M)", major_tick_spacing=0.1, minor_tick_count=5, major_tick_formatter="{x:.3f}")
+graphing.style_axis(c_a_ax, "y", 0, 1.5, label="Absorbance (A)", major_tick_spacing=0.5, minor_tick_count=5, major_tick_formatter="{x:.3f}")
 # Find and plot the line of best fit
-y_int, slope = np.polynomial.polynomial.polyfit(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], 1)
-y_avg = sum(c_a_tb["Absorbance (A)"])/len(c_a_tb["Absorbance (A)"])
-R_squared = 1 - sum(((slope * x + y_int) - y)**2 for x, y in zip(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"])) / sum((y - y_avg)**2 for y in c_a_tb["Absorbance (A)"])
-line_x_vals = np.array([0, 0.5])
-line_y_vals = slope * line_x_vals + y_int
-c_a_ax.plot(line_x_vals, line_y_vals, "r")
+y_int, slope, R_squared = graphing.plot_best_fit_line(c_a_ax, c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], "r")
+# Add a label for the line
 c_a_ax.text(0.03, 1.2, f"$y={slope:.4f}\\ x + {y_int:.3f}$\n$R^2={R_squared:.4f}$", backgroundcolor="lightgray", color="blue")
-# Customize the x-axis
-c_a_ax.set_xlabel("Concentration (M)")
-c_a_ax.set_xlim(0, 0.5)
-c_a_ax.xaxis.set_major_locator(mpl.ticker.MultipleLocator(0.1))
-c_a_ax.xaxis.set_major_formatter("{x:.3f}") # x for tick value, and pos for tick position; can also use a lambda function with those variables
-c_a_ax.xaxis.set_minor_locator(mpl.ticker.AutoMinorLocator(5))
-# Customize the y-axis
-c_a_ax.set_ylabel("Absorbance (A)")
-c_a_ax.set_ylim(0, 1.5)
-c_a_ax.yaxis.set_major_locator(mpl.ticker.MultipleLocator(0.5))
-c_a_ax.yaxis.set_major_formatter("{x:.3f}")
-c_a_ax.yaxis.set_minor_locator(mpl.ticker.AutoMinorLocator(5))
 # Save the figure as a png
 c_a_fig.tight_layout()
 c_a_fig.savefig("media/absorbance-concentration-graph.png")
