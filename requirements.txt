@@ -1,7 +1,7 @@
 cycler==0.11.0
 fonttools==4.34.4
 kiwisolver==1.4.3
--e git+https://github.com/VinEdw/html-py-lab-reports.git@d3ea7c33f2b6e24d48f6fd8a5a1bb44ec2839bfa#egg=lab_report_tools
+-e .
 matplotlib==3.5.2
 numpy==1.23.1
 packaging==21.3
