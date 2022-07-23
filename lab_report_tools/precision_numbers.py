@@ -217,6 +217,8 @@ class PrecisionNumber:
             absolute_error = self.absolute_error
         else:
             return NotImplemented
+        if sum == 0:
+            return 0
         return PrecisionNumber(sum, decimal_place=decimal_place, absolute_error=absolute_error)
 
     def __radd__(self, other: 'float|int', /) -> 'PrecisionNumber':
@@ -235,6 +237,8 @@ class PrecisionNumber:
             relative_error = self.relative_error
         else:
             return NotImplemented
+        if product == 0:
+            return 0
         return PrecisionNumber(product, sig_figs=sig_figs, relative_error=relative_error)
 
     def __rmul__(self, other: 'float|int', /) -> 'PrecisionNumber':
@@ -261,6 +265,8 @@ class PrecisionNumber:
             relative_error = self.relative_error
         else:
             return NotImplemented
+        if quotient == 0:
+            return 0
         return PrecisionNumber(quotient, sig_figs=sig_figs, relative_error=relative_error)
     
     def __rtruediv__(self, other: 'float|int', /) -> 'PrecisionNumber':
@@ -269,6 +275,8 @@ class PrecisionNumber:
             quotient = other / self.value
             sig_figs = self.sig_figs
             relative_error = self.relative_error
+            if quotient == 0:
+                return 0
             return PrecisionNumber(quotient, sig_figs=sig_figs, relative_error=relative_error)
         else:
             return NotImplemented
