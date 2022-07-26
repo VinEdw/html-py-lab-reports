@@ -12,9 +12,17 @@ body {
   text-indent: 2em;
 }
 
+.footnote {
+  float: footnote;
+  font-size: 0.8em;
+}
+
 @page {
   @top-right {
     content: "Edwards " counter(page);
+  }
+  @footnote {
+    float: bottom;
   }
 }
 
