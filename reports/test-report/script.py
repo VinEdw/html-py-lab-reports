@@ -44,7 +44,7 @@ file_editor.write_between_markers(density_table_w_error.get_html(caption="Densit
 c_a_tb = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
 # Convert the numbers from str to float
 for col in c_a_tb:
-    c_a_tb[col] = [float(val) for val in c_a_tb[col]]
+    c_a_tb[col] = [PrecisionNumber(val) if float(val) != 0.0 else 0.0 for val in c_a_tb[col]]
 print(c_a_tb)
 # Plot the Absorbance vs. Concentration in a scatter plot
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1, figsize=(8, 4))
