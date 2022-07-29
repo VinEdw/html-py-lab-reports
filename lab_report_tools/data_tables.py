@@ -28,7 +28,7 @@ class DataTable:
         for head, col in self.items():
             label = str(self.labels.get(head, head))
             str_list = [str(cell) for cell in col]
-            max_len = max(len(label), *(len(item) for item in str_list))
+            max_len = max(3, len(label), *(len(item) for item in str_list))
             justified_str_list = [item.rjust(max_len) for item in str_list]
             justified_str_list.insert(0, ("-" * max_len))
             justified_str_list.insert(0, label.ljust(max_len))
