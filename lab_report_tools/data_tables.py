@@ -221,6 +221,18 @@ class DataTable:
         self._row_count -= 1
         return data
 
+    def substitute(self, column: str, i: int, value):
+        """
+        Replace the cell at the specified column and index with the given value.
+        Return the replaced value.
+        """
+        data = self[column]
+        old_value = data[i]
+        data[i] = value
+        self[column] = data
+        return old_value
+
+
     def get_html(self, *, id = None, right_header_columns: int = 0, caption: str = None) -> str:
         """
         Generate a string with the HTML representation of the table.
