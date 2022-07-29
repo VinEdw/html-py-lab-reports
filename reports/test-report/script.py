@@ -42,10 +42,9 @@ file_editor.write_between_markers(density_table_w_error.get_html(caption="Densit
 
 # Open the concentration & absorbance data
 c_a_tb = DataTable.from_csv("raw-data/concentration-absorbance-data.csv")
-# Convert the numbers from str to float
+# Convert the numbers from str to PrecisionNumber (except 0)
 for col in c_a_tb:
     c_a_tb[col] = [PrecisionNumber(val) if float(val) != 0.0 else 0.0 for val in c_a_tb[col]]
-print(c_a_tb)
 # Plot the Absorbance vs. Concentration in a scatter plot
 c_a_fig, c_a_ax = plt.subplots(nrows=1, ncols=1, figsize=(8, 4))
 c_a_ax.plot(c_a_tb["Concentration (M)"], c_a_tb["Absorbance (A)"], "bo")
@@ -62,3 +61,7 @@ c_a_ax.text(0.03, 1.2, f"$y={slope:.4f}\\ x + {y_int:.3f}$\n$R^2={R_squared:.4f}
 # Save the figure as a png
 c_a_fig.tight_layout()
 c_a_fig.savefig("media/absorbance-concentration-graph.png")
+# Replace the zeros in the table with a string that looks nicer
+c_a_tb.substitute("Concentration (M)", 0, "0.000")
+c_a_tb.substitute("Absorbance (A)", 0, "0.000")
+print(c_a_tb)
