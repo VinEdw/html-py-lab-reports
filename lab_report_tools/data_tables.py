@@ -282,6 +282,11 @@ class DataTable:
     def row_count(self):
         """Get the number of rows in the table. A read-only property."""
         return self._row_count
+    
+    @property
+    def column_count(self):
+        """Get the number of columns in the table. A read-only property."""
+        return len(self._columns)
 
     @staticmethod
     def from_csv(file_location):
