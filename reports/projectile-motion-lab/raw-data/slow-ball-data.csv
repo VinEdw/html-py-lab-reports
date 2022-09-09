@@ -1,4 +1,4 @@
-"Slow Ball Video Analysis: Time (s)","Slow Ball Video Analysis: -X (m)","Slow Ball Video Analysis: Y (m)","Slow Ball Video Analysis: X Velocity (m/s)","Slow Ball Video Analysis: Y Velocity (m/s)","Slow Ball Video Analysis: X Acceleration (m/s²)","Slow Ball Video Analysis: Y Acceleration (m/s²)","Slow Ball Video Analysis: X (m)"
+"Time (s)","-X (m)","Y (m)","X Velocity (m/s)","Y Velocity (m/s)","X Acceleration (m/s²)","Y Acceleration (m/s²)","X (m)"
 0.034,0,0.880428282828,0.582207937966,-0.272749311284,1.30173405045,-5.9431665043,-0
 0.067,-0.0178585858586,0.875070707071,0.629180481046,-0.44092681658,1.12817626996,-7.10362671747,0.0178585858586
 0.1,-0.0410747474747,0.858997979798,0.663666442612,-0.698623800719,0.849621051958,-8.56964675959,0.0410747474747
