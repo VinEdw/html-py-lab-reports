@@ -291,7 +291,7 @@ class DataTable:
     @staticmethod
     def from_csv(file_location):
         """Create a DataTable instance from a csv file."""
-        with open(file_location, "r") as file:
+        with open(file_location, "r", encoding="utf-8") as file:
             csv_reader = csv.DictReader(file)
             result = {name:[] for name in csv_reader.fieldnames}
             for row in csv_reader:
