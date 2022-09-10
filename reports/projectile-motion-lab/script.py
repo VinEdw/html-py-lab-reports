@@ -22,6 +22,7 @@ for table in (slow_ball_table, fast_ball_table):
         else:
             table[col] = [PrecisionNumber(
                 val, decimal_place=-3) if float(val) != 0.0 else 0 for val in table[col]]
+    table.create_column([i for i in range(1, table.row_count + 1)], "Row", index=0, label="", use_dict=False)
     print(table)
 
 file_editor.write_between_markers(slow_ball_table.get_html(
