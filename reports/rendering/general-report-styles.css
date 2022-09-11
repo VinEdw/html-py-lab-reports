@@ -1,6 +1,11 @@
 body {
   counter-reset: figure-count;
   counter-reset: table-count;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+  font-size: 12pt;
 }
 
 .title-page {
