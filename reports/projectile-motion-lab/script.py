@@ -34,7 +34,7 @@ file_editor.write_between_markers(fast_ball_table.get_html(
 
 run_list = ["slow", "fast"]
 graph_order = ["x-t", "y-t", "vx-t", "vy-t", "y-x"]
-figure_template = '<figure>\n  <figcaption>{caption}</figcaption>\n  <img src="{src}">\n</figure>'
+figure_template = '<figure>\n  <img src="{src}">\n  <figcaption>{caption}</figcaption>\n</figure>'
 symbol_name_map = {
     "t": "Time",
     "x": "Horizontal Position",
