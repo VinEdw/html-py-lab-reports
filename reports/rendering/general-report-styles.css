@@ -44,6 +44,7 @@ h2 {
 figure {
   break-inside: avoid;
   margin: 0;
+  margin-bottom: 2em;
   counter-increment: figure-count;
 }
 
@@ -63,6 +64,7 @@ img {
 table {
   border-collapse: collapse;
   counter-increment: table-count;
+  margin-bottom: 2em;
   break-inside: avoid;
 }
 
