@@ -9,8 +9,7 @@ p {
 }
 
 .title-page {
-  text-align: center;
-  break-after: page;
+  margin-left: 2em;
 }
 
 .indent {
