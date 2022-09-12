@@ -38,6 +38,7 @@
       <strong>Vincent Edwards</strong>
       <br>
       Mt. San Antonio College, Physics 4A, CRN 26537
+      <br>
       <time datetime="2022-09-14">September 14, 2022</time>
     </p>
     <p class="title-page">
@@ -51,6 +52,42 @@
     <section id="theory">
       <h2>Theory</h2>
       <p class="indent">
+        The projectiles used in this lab, steel ball bearings, were modeled as point particles falling under the influence of gravity alone, with air resistance considered negligible.
+        Thus, they were expected to move with constant horizontal velocity and constant downward acceleration.
+        In addition, since they were projected horizontally off of a flat table, they would have zero initial velocity component in the vertical direction.
+        A coordinate system was chosen with the ball starting its fall at $x=0$, the positive x-axis in the ball's horizontal direction of motion, the ground at $y=0$, and the positive y-axis pointed up.
+        Applying the kinematic equations for constant acceleration yields the following equations for the motion of the ball:
+      </p>
+      <p>
+        $$x=v_0t \tag{1}$$
+        describes the ball's horizontal position over time where $x$ is the horizontal position, $v_0$ is the initial speed, and $t$ is the amount of time that has passed.
+      </p>
+      <p>
+        $$y=y_0 - \frac{1}{2}gt^2 \tag{2}$$
+        describes the ball's vertical position over time where $y$ is the vertical position, $y_0$ is the initial height above the ground, and $g$ is the acceleration due to gravity.
+      </p>
+      <p>
+        $$v_x = v_0 \tag{3}$$
+        describes the ball's horizontal velocity over time where $v_x$ is the horizontal velocity.
+      </p>
+      <p>
+        $$v_y = -gt \tag{4}$$
+        describes the ball's vertical velocity over time where $v_y$ is the vertical velocity.
+      </p>
+      <p>
+        $$y = y_0 - \dfrac{gx^2}{2v_0^2} \tag{5}$$
+        describes the ball's path through the air, and is the result of substituting equation 1 into equation 2 and eliminating $t$.
+      </p>
+      <p class="indent">
+        In Part 2, the ball is launched onto an angled board (see the diagram in the Method section for more details). The position of the board in this coordinate system can be described by the following equation:
+        $$y=y_0 - \tan(\theta) x \tag{6}$$
+        where $\theta$ is the angle of the board above horizontal.
+        Solving for the intersection between the board and the path of the ball yields
+        $$x = \dfrac{2v_0^2\tan(\theta)}{g} \tag{7}$$
+        where $x$ is the horizontal position of the collision between the ball and the board.
+        Applying some trigonometry to this expression yields
+        $$d = \dfrac{2v_0^2\tan(\theta)}{g\cos(\theta)} \tag{8}$$
+        where $d$ is the distance along the angled board from the top where the ball collided with the board.
       </p>
     </section>
 
