@@ -531,6 +531,76 @@
       </p>
 
       <!-- #endregion fast-ball-graphs -->
+      
+      <table>
+        <caption>Part 1 Motion Data Summary</caption>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Run 1</th>
+            <th>Run 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>$v_{0x}$ (m/s)</th>
+            <td>0.582</td>
+            <td>1.115</td>
+          </tr>
+          <tr>
+            <th>$v_{0y}$ (m/s)</th>
+            <td>-0.273</td>
+            <td>-0.521</td>
+          </tr>
+          <tr>
+            <th>$v_{0}$ (m/s)</th>
+            <td>0.643</td>
+            <td>1.231</td>
+          </tr>
+          <tr>
+            <th>$v_{fx}$ (m/s)</th>
+            <td>0.505</td>
+            <td>0.855</td>
+          </tr>
+          <tr>
+            <th>$v_{fy}$ (m/s)</th>
+            <td>-3.135</td>
+            <td>-3.523</td>
+          </tr>
+          <tr>
+            <th>$v_{f}$ (m/s)</th>
+            <td>3.175</td>
+            <td>3.625</td>
+          </tr>
+          <tr>
+            <th>$R$ (m)</th>
+            <td>0.2732</td>
+            <td>0.4217</td>
+          </tr>
+          <tr>
+            <th>$t$ (s)</th>
+            <td>0.433 ± 0.04</td>
+            <td>0.400 ± 0.04</td</td>
+          </tr>
+          <tr>
+            <th>$a_y$ (m/s^2)</th>
+            <td>-8.6 ± 0.3</td>
+            <td>-8.7 ± 0.3</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="indent">
+        The prior table summarizes some of the motion data from Part 1 for Runs 1 and 2.
+        It includes the initial and final velocity components of the ball, values which were simply read from Table 1.
+        It also includes the initial and final speeds of the ball, found by taking the square root of the sum of the squares of the velocity components.
+        Towards the bottom, it includes a value for $R$, the horizontal distance traveled by the ball.
+        This was found by taking the difference between the initial and final $x$ positions.
+        Next, it includes a value for $t$, the time the ball was traveling through the air.
+        This was found by taking the difference between the initial and final time values.
+        The uncertainty was taken to be plus or minus the duration of one frame, about 0.03 seconds.
+        Lastly, it includes the vertical acceleration of the ball.
+        This was found by doubling the coefficient for $t^2$ in the curve fit equations for vertical position versus time (in accord with equation 2).
+      </p>
 
     </section>
 
