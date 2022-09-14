@@ -641,6 +641,70 @@
       </table>
       <!-- #endregion horizontal-distance-table -->
 
+      <p class="indent">
+        The above table contains the measurements made of $R$ (see Figure 2) made in the five trials. 
+        The average value for $R$ was 70.022 cm. 
+        The uncertainty of each measurement was taken to be due to read error (± 0.05 cm, half the smallest increment on the meter stick) and calibration error (0.2% of the average value), as these are common rules of thumb for approximating uncertainty.
+        Below are the calculations of the uncertainty for the $R$ measurements.
+      </p>
+      <p>
+        $\Delta R = \sqrt{(0.05 \units{cm})^2 + (70.022 \units{cm} \cdot 0.002)^2}$<br>
+        $\Delta R = 0.15 \units{cm}$
+      </p>
+      <p class="indent">
+        The calculations for the uncertainty of the average $R$ value is shown below.
+        In it, $N$ represents the total number of trials while $R_i$ is the measurement made in trial $i$.
+      </p>
+      <p>
+        $R_{av} = \frac{1}{N} \sum\limits_{i=1}^{N}R_i$<br>
+        $\Delta R_{av} = (\sum\limits_{i=1}^{N}(\frac{1}{N} \Delta R)^2 )^\frac{1}{2}$<br>
+        $\Delta R_{av} = \dfrac{\Delta R}{\sqrt{N}}$<br>
+        $\Delta R_{av} = \dfrac{(0.15 \units{cm})}{\sqrt{5}}$<br>
+        $\Delta R_{av} = 0.07 \units{cm}$
+      </p>
+      <p class="indent">
+        The calculation of the initial speed $v_0$ is shown below.
+        In it, equation 5 is evaluated at the $(x, y)$ position $(R, 0)$.
+        It is then rearranged to solve for $v_0$.
+        What follows is a calculation of the uncertainty of the initial speed ($\Delta v_0$).
+        The measured value for $y_0$, 93.7 ± 0.2 cm, was needed.
+      </p>
+      <p>
+        $y = y_0 - \dfrac{gx^2}{2v_0^2}$<br>
+        $\underline{y=0\ @x=R}$<br>
+        $0 = y_0 - \dfrac{gR^2}{2v_0^2}$<br>
+        $v_0 = \sqrt{\dfrac{gR^2}{2y_0}}$<br>
+        $v_0 = \sqrt{\dfrac{(9.81 \units{m/s^2})(70.022 \units{cm})^2}{2(93.70 \units{cm})} \cdot \dfrac{1 \units{m}}{100 \units{cm}}}$<br>
+        $v_0 = 1.602 \units{m/s}$
+      </p>
+      <hr>
+      <p>
+        $\Delta v_0 = \sqrt{(\del{v_0}{R}\Delta R)^2 + (\del{v_0}{y_0})^2}$<br>
+        $\Delta v_0 = \sqrt{\dfrac{g\Delta R^2}{2y_0} + \dfrac{R^2g\Delta y_0^2}{8y_0^3}}$<br>
+        $\Delta v_0 = \sqrt{(\dfrac{(9.81 \units{m/s^2})(0.07 \units{cm})^2}{2(93.70 \units{cm})} + \dfrac{(70.022 \units{cm})^2(9.81 \units{m/s^2})(0.2 \units{cm})^2}{8(93.70 \units{cm})^3}) \cdot \dfrac{1 \units{m}}{100 \units{cm}}}$<br>
+        $\Delta v_0 = 0.002 \units{m/s}$
+      </p>
+      <p class="indent">
+        The calculation of the predicted value for $d$ is shown below.
+        In it, equation 8 is evaluated using the data gathered.
+        What follows is a calculation of the uncertainty of that prediction.
+        The measured value for $\theta$, 49.0 ± 0.5°, was needed.
+      </p>
+      <p>
+        $d = \dfrac{2v_0^2\tan(\theta)}{g\cos(\theta)}$<br>
+        $d = \dfrac{2(1.602 \units{m/s})^2\tan(49.0°)}{(9.81 \units{m/s^2})\cos(49.0°)}$<br>
+        $d = 0.91754 \units{m}$<br>
+        $d = 91.754 \units{cm}$<br>
+      </p>
+      <hr>
+      <p>
+        $\Delta d = sqrt{(\del{d}{v_0} \Delta v_0)^2 + (\del{d}{\theta} \Delta \theta)^2}$<br>
+        $\Delta d = sqrt{(\dfrac{4v_0\tan(\theta)}{g\cos(\theta)} \Delta v_0)^2 + (\dfrac{2v_0^2(1 + \sin^2(\theta))}{g\cos^3(\theta)} \Delta \theta)^2}$<br>
+        $\Delta d = [(\dfrac{4(1.602 \units{m/s})\tan(49.0°)}{g\cos(49.0°)} (0.002 \units{m}{s}))^2 + (\dfrac{2(1.602 \units{m/s})^2(1 + \sin^2(49.0°))}{(9.81 \units{m/s^2})\cos^3(49.0°)} (0.5° \cdot \dfrac{\pi}{180°}))^2]^{\frac{1}{2}}$<br>
+        $\Delta d = 0.03 \units{m}$<br>
+        $\Delta d = 3 \units{cm}$
+      </p>
+
       <!-- #region angled-distance-table -->
       <table>
         <caption>Angled Distance Measurements ($d$)</caption>
