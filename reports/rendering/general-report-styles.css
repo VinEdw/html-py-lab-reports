@@ -97,3 +97,7 @@ caption::before {
   font-weight: bold;
 }
 /* #endregion */
+
+.katex {
+  font-size: 1.1em;
+}
