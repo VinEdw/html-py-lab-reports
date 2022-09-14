@@ -760,6 +760,29 @@
       </table>
       <!-- #endregion angled-distance-table -->
 
+      <p class="indent">
+        The above table contains the measurements of $d$ (see Figure 2) made in the ten trials. 
+        The average value for $d$ was 87.169 cm (or 0.87169 m). 
+        The uncertainty of each measurement was taken to be due to read error (± 0.05 cm, half the smallest increment on the meter stick) and calibration error (0.2% of the average value), as these are common rules of thumb for approximating uncertainty.
+        Below are the calculations of the uncertainty for the $d$ measurements.
+      </p>
+      <p>
+        $\Delta d = \sqrt{(0.05 \units{cm})^2 + (87.169 \units{cm} \cdot 0.002)^2}$<br>
+        $\Delta d = 0.18 \units{cm}$
+      </p>
+      <p class="indent">
+        The calculations for the uncertainty of the average $d$ value is shown below.
+        In it, $N$ represents the total number of trials while $d_i$ is the measurement made in trial $i$.
+      </p>
+      <p>
+        $d_{av} = \frac{1}{N} \sum\limits_{i=1}^{N}d_i$<br>
+        $\del{d_{av}}{d_i} = \dfrac{1}{N}$<br>
+        $\Delta d_{av} = (\sum\limits_{i=1}^{N}(\frac{1}{N} \Delta d)^2 )^\frac{1}{2}$<br>
+        $\Delta d_{av} = \dfrac{\Delta d}{\sqrt{N}}$<br>
+        $\Delta d_{av} = \dfrac{(0.18 \units{cm})}{\sqrt{10}}$<br>
+        $\Delta d_{av} = 0.06 \units{cm}$
+      </p>
+
     </section>
 
     <section id="conclusion">
