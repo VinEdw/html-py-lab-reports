@@ -1,5 +1,7 @@
 from lab_report_tools import *
 
+file_name = "projectile-motion-lab-report.html"
+
 # Get the logger pro tables into the report
 
 slow_ball_table = DataTable.from_csv("raw-data/slow-ball-data.csv")
@@ -26,15 +28,16 @@ for table in (slow_ball_table, fast_ball_table):
     print(table)
 
 file_editor.write_between_markers(slow_ball_table.get_html(
-    caption="Run 1 Logger Pro Video Data"), "slow-ball-table", "projectile-motion-lab-report.html")
+    caption="Run 1 Logger Pro Video Data"), "slow-ball-table", file_name)
 file_editor.write_between_markers(fast_ball_table.get_html(
-    caption="Run 2 Logger Pro Video Data"), "fast-ball-table", "projectile-motion-lab-report.html")
+    caption="Run 2 Logger Pro Video Data"), "fast-ball-table", file_name)
 
 # Get distance along angled board data into the report
 
 angled_distance_data = DataTable.from_csv("raw-data/distance-along-angled-board.csv")
+angled_distance_data.labels["d (cm)"] = "$d$ (cm)"
 angled_distance_data.create_column([i for i in range(1, angled_distance_data.row_count + 1)], "Trial", index=0, label="Trial", use_dict=False)
 angled_distance_data["d (cm)"] = [PrecisionNumber(val, decimal_place=-2) for val in angled_distance_data["d (cm)"]]
 print(angled_distance_data)
-angled_distance_avg = sum(angled_distance_data["d (cm)"]) / len(angled_distance_data["d (cm)"])
-print(angled_distance_avg)
+file_editor.write_between_markers(angled_distance_data.get_html(
+    caption="Angled Distance Measurements ($d$)"), "angled-distance-table", file_name)
