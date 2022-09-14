@@ -41,3 +41,13 @@ angled_distance_data["d (cm)"] = [PrecisionNumber(val, decimal_place=-2) for val
 print(angled_distance_data)
 file_editor.write_between_markers(angled_distance_data.get_html(
     caption="Angled Distance Measurements ($d$)"), "angled-distance-table", file_name)
+
+# Get the horizontal distance data into the report
+
+horizontal_distance_data = DataTable.from_csv("raw-data/horizontal-distance-data.csv")
+horizontal_distance_data.labels["R (cm)"] = "$R$ (cm)"
+horizontal_distance_data.create_column([i for i in range(1, horizontal_distance_data.row_count + 1)], "Trial", index=0, label="Trial", use_dict=False)
+horizontal_distance_data["R (cm)"] = [PrecisionNumber(val, decimal_place=-2) for val in horizontal_distance_data["R (cm)"]]
+print(horizontal_distance_data)
+file_editor.write_between_markers(horizontal_distance_data.get_html(
+    caption="Horizontal Distance Measurements ($R$)"), "horizontal-distance-table", file_name)
