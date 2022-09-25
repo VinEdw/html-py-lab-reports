@@ -49,3 +49,12 @@ y_int, slope, R_squared = graphing.plot_best_fit_line(m_a_ax, m_a_tb["m_h"], m_a
 # Save the figure as a png
 m_a_fig.tight_layout()
 m_a_fig.savefig("media/hanging-mass-acceleration-graph.png")
+
+# double check slope uncertainy
+n = m_a_tb.row_count
+m_h_avg = sum(m_a_tb["m_h"]) / n
+y_dists = sum((row["a_avg"] - (row["m_h"]*slope + y_int))**2 for row in m_a_tb.rows())
+x_dists = sum((val - m_h_avg)**2 for val in m_a_tb["m_h"])
+error = (y_dists / x_dists / (n - 2))**0.5
+print(error)
+print(repr(error))
