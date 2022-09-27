@@ -175,11 +175,40 @@
       <p class="indent">
         The prior figure plots the average acceleration of the cart ($a_{avg}$) versus the hanging mass ($m_h$).
         In accord with equation 2, the plot was given a linear fit.
-        The resulting equation was as follows.
+        The resulting equation was as follows, with uncertainty taken to be the standard error of the fit parameters.
         $$a_{avg} = (0.02523 \pm 0.00006 \units{\dfrac{m}{s^2 g}}) m_h + (0.0010 \pm 0.0009 \units{\dfrac{m}{s^2}}) \tag{6}$$
-        For future reference, let $s_e$ refer to the experimentally determined slope in equation 6.
-        Equation 2 suggest that the theoretical slope ($s_t$) should be $g/m_{sys}$.
-        Performing the necessary calculation, the theoretical slope is found to be $0.025775 \pm 0.000013 \units{{m}/(s^2 g)}$.
+      </p>
+      
+      <table>
+        <caption>$a_{avg}$ vs $m_h$ Slope Comparison</caption>
+        <thead>
+          <tr>
+            <td>Quantity</td>
+            <td>Value</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Experimental Slope ($s_e$)</td>
+            <td>$25.23 \pm 0.06 \units{{m}/(s^2\ kg)}$</td>
+          </tr>
+          <tr>
+            <td>Theoretical Slope ($s_t = g/m_{sys}$)</td>
+            <td>$25.775 \pm 0.013 \units{{m}/(s^2\ kg)}$</td>
+          </tr>
+          <tr>
+            <td>Slope Difference ($D = s_t - s_e$)</td>
+            <td>$0.55 \pm 0.06 \units{{m}/(s^2\ kg)}$</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p class="indent">
+        The prior table contains information useful for a comparison of the slopes for a graph of acceleration versus hanging mass.
+        $s_e$ came from the experimentally determined slope in equation 6.
+        $s_t$ came from the theoretical slope suggested by equation 2, with uncertainty due to uncertainty in the system mass.
+        $D$ is the difference between these two values, with uncertainty equal to the uncertainty of the two slopes added in quadrature.
+        Notice that the difference $D$ does not include the value zero.
       </p>
 
     </section>
